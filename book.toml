@@ -1,6 +1,15 @@
 [book]
-authors = ["Thomas Lindae"]
+title = "Assembler Cheatsheet"
+author = "Thomas Lindae"
 language = "en"
 multilingual = false
 src = "src"
-title = "Assembler Cheatsheet"
+
+[output.html]
+default-theme = "ayu"
+git-repository-url = "https://github.com/Treeniks/asm-cheatsheet"
+no-section-label = true
+
+[output.html.fold]
+enable = true
+level = 0
