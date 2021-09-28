@@ -1,3 +1,3 @@
 # Summary
 
-- [Registers](./registers.md)
+- [Registers](registers.md)
