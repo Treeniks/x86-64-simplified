@@ -13,3 +13,5 @@ no-section-label = true
 [output.html.fold]
 enable = true
 level = 0
+
+[preprocessor.svgbob2]
