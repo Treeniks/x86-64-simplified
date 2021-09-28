@@ -1,0 +1,29 @@
+language: rust
+sudo: false
+
+cache:
+  - cargo
+
+rust:
+  - stable
+
+before_script:
+  - (test -x $HOME/.cargo/bin/cargo-install-update || cargo install cargo-update)
+  - (test -x $HOME/.cargo/bin/mdbook || cargo install mdbook)
+  - (test -x $HOME/.cargo/bin/mdbook-svgbob2 || cargo install mdbook-svgbob2)
+  - cargo install-update -a
+
+script:
+  - mdbook build
+
+deploy:
+  provider: pages
+  strategy: git
+  edge: true
+  cleanup: false
+  github-token: $GITHUB_TOKEN
+  local-dir: book # In case of custom book path: path/to/mybook/book
+  keep-history: false
+  on:
+    branch: master
+  target_branch: gh-pages
