@@ -1,33 +1,63 @@
 # Instructions
 ## How to read Instructions
 
-## List of Instructions
-| Mnemonic                                         | Summary                                          |
-| :----------------------------------------------- | :----------------------------------------------- |
-| [`MOV`](mov.md)                                  | Move                                             |
-| [`ADD`](add.md)                                  | Add                                              |
-| [`SUB`](sub.md)                                  | Subtract                                         |
-| [`IMUL`](imul.md)                                | Signed Multiply                                  |
-|                                                  |                                                  |
-| [`AND`](and.md)                                  | Logical AND                                      |
-| [`ANDN`](andn.md)                                | Logical AND NOT                                  |
-| [`CMP`](cmp.md)                                  | Compare Two Operands                             |
-| [`DIV`](div.md)                                  | Unsigned Divide                                  |
-| [`IDIC`](idiv.md)                                | Signed Divide                                    |
-| [`JMP`](jmp.md)                                  | Jump                                             |
-| [`Jcc`](jcc.md)                                  | Jump if Condition is Met                         |
-| [`MUL`](mul.md)                                  | Unsigned Multiply                                |
-| [`NEG`](neg.md)                                  | Two's Complement Negation                        |
-| [`NOP`](nop.md)                                  | No Operation                                     |
-| [`NOT`](not.md)                                  | One's Complement Negation                        |
-| [`OR`](or.md)                                    | Logical Inclusive OR                             |
-| [`POP`](pop.md)                                  | Pop a Value from the Stack                       |
-| [`PUSH`](push.md)                                | Push Word, Doubleword or Quadword Onto the Stack |
-| [`RET`](ret.md)                                  | Return from Procedure                            |
-| [`SAL`\|`SAR`\|`SHL`\|`SHR`](sal,sar,shl,shr.md) | Shift                                            |
-| [`TEST`](test.md)                                | Logical Compare                                  |
-| [`XCHG`](xchg.md)                                | Exchange Register/Memory with Register           |
-| [`XOR`](xor.md)                                  | Logical Exclusive OR                             |
+## Instruction Set Summary
+### Data Transfer Instructions
+| Mnemonic          | Summary          |
+| :---------------- | :--------------- |
+| [`MOV`](mov.md)   | Move             |
+| [`XCHG`](xchg.md) | Exchange         |
+| [`PUSH`](push.md) | Push Onto Stack  |
+| [`POP`](pop.md)   | Pop Off of Stack |
+
+### Binary Arithmetic Instructions
+| Mnemonic          | Summary           |
+| :---------------- | :---------------- |
+| [`ADD`](add.md)   | Integer Add       |
+| [`SUB`](sub.md)   | Subtract          |
+| [`IMUL`](imul.md) | Signed Multiply   |
+| [`MUL`](mul.md)   | Unsigned Multiply |
+| [`IDIV`](idiv.md) | Signed Divide     |
+| [`DIV`](div.md)   | Unsigned Divide   |
+| [`INC`](inc.md)   | Increment         |
+| [`DEC`](dec.md)   | Decrement         |
+| [`NEG`](neg.md)   | Negate            |
+| [`CMP`](cmp.md)   | Compare           |
+
+### Logical Instructions
+| Mnemonic        | Summary                              |
+| :-------------- | :----------------------------------- |
+| [`AND`](and.md) | Perform Bitwise Logical AND          |
+| [`OR`](or.md)   | Perform Bitwise Logical OR           |
+| [`XOR`](xor.md) | Perform Bitwise Logical Exclusive OR |
+| [`NOT`](not.md) | Perform Bitwise Logical NOT          |
+
+### Shift and Rotate Instructions
+| Mnemonic                           | Summary                                  |
+| :--------------------------------- | :--------------------------------------- |
+| [`SAR`](sal,sar,shl,shr.md)        | Shift Arithmetic Right                   |
+| [`SHR`](sal,sar,shl,shr.md)        | Shift Logical Right                      |
+| [`SAL`\|`SHL`](sal,sar,shl,shr.md) | Shift Arithmetic Left/Shift Logical Left |
+
+### Bit and Byte Instructions
+| Mnemonic          | Summary         |
+| :---------------- | :-------------- |
+| [`TEST`](test.md) | Logical Compare |
+
+### Control Transfer Instructions
+| Mnemonic          | Summary        |
+| :---------------- | :------------- |
+| [`JMP`](jmp.md)   | Jump           |
+| [`Jcc`](jcc.md)   | Jump if `cc`   |
+| [`CALL`](call.md) | Call Procedure |
+| [`RET`](ret.md)   | Return         |
+
+### Miscellaneous Instructions
+| Mnemonic        | Summary                |
+| :-------------- | :--------------------- |
+| [`LEA`](lea.md) | Load Effective Address |
+| [`NOP`](nop.md) | No Operation           |
+
 
 
 
