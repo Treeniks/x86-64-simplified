@@ -2,85 +2,56 @@
 ## How to read Instructions
 
 ## Instruction Set Summary
-### Data Transfer Instructions
-| Mnemonic          | Summary          |
-| :---------------- | :--------------- |
-| [`MOV`](mov.md)   | Move             |
-| [`XCHG`](xchg.md) | Exchange         |
-| [`PUSH`](push.md) | Push Onto Stack  |
-| [`POP`](pop.md)   | Pop Off of Stack |
+### [Data Transfer Instructions](data-transfer-instructions/README.md)
+{{ #include data-transfer-instructions/README.md:table }}
 
-### Binary Arithmetic Instructions
-| Mnemonic          | Summary           |
-| :---------------- | :---------------- |
-| [`ADD`](add.md)   | Integer Add       |
-| [`SUB`](sub.md)   | Subtract          |
-| [`IMUL`](imul.md) | Signed Multiply   |
-| [`MUL`](mul.md)   | Unsigned Multiply |
-| [`IDIV`](idiv.md) | Signed Divide     |
-| [`DIV`](div.md)   | Unsigned Divide   |
-| [`INC`](inc.md)   | Increment         |
-| [`DEC`](dec.md)   | Decrement         |
-| [`NEG`](neg.md)   | Negate            |
-| [`CMP`](cmp.md)   | Compare           |
+[MOV]: data-transfer-instructions/mov.md
+[XCHG]: data-transfer-instructions/xchg.md
+[PUSH]: data-transfer-instructions/push.md
+[POP]: data-transfer-instructions/pop.md
 
-### Logical Instructions
-| Mnemonic        | Summary                              |
-| :-------------- | :----------------------------------- |
-| [`AND`](and.md) | Perform Bitwise Logical AND          |
-| [`OR`](or.md)   | Perform Bitwise Logical OR           |
-| [`XOR`](xor.md) | Perform Bitwise Logical Exclusive OR |
-| [`NOT`](not.md) | Perform Bitwise Logical NOT          |
+### [Binary Arithmetic Instructions](binary-arithmetic-instructions/README.md)
+{{ #include binary-arithmetic-instructions/README.md:table }}
 
-### Shift and Rotate Instructions
-| Mnemonic                           | Summary                                  |
-| :--------------------------------- | :--------------------------------------- |
-| [`SAR`](sal,sar,shl,shr.md)        | Shift Arithmetic Right                   |
-| [`SHR`](sal,sar,shl,shr.md)        | Shift Logical Right                      |
-| [`SAL`\|`SHL`](sal,sar,shl,shr.md) | Shift Arithmetic Left/Shift Logical Left |
+[ADD]: binary-arithmetic-instructions/add.md
+[SUB]: binary-arithmetic-instructions/sub.md
+[IMUL]: binary-arithmetic-instructions/imul.md
+[MUL]: binary-arithmetic-instructions/mul.md
+[IDIV]: binary-arithmetic-instructions/idiv.md
+[DIV]: binary-arithmetic-instructions/div.md
+[INC]: binary-arithmetic-instructions/inc.md
+[DEC]: binary-arithmetic-instructions/dec.md
+[NEG]: binary-arithmetic-instructions/neg.md
+[CMP]: binary-arithmetic-instructions/cmp.md
 
-### Bit and Byte Instructions
-| Mnemonic          | Summary         |
-| :---------------- | :-------------- |
-| [`TEST`](test.md) | Logical Compare |
+### [Logical Instructions](logical-instructions/README.md)
+{{ #include logical-instructions/README.md:table }}
 
-### Control Transfer Instructions
-| Mnemonic          | Summary        |
-| :---------------- | :------------- |
-| [`JMP`](jmp.md)   | Jump           |
-| [`Jcc`](jcc.md)   | Jump if `cc`   |
-| [`CALL`](call.md) | Call Procedure |
-| [`RET`](ret.md)   | Return         |
+[AND]: logical-instructions/and.md
+[OR]: logical-instructions/or.md
+[XOR]: logical-instructions/xor.md
+[NOT]: logical-instructions/not.md
 
-### Miscellaneous Instructions
-| Mnemonic        | Summary                |
-| :-------------- | :--------------------- |
-| [`LEA`](lea.md) | Load Effective Address |
-| [`NOP`](nop.md) | No Operation           |
+### [Shift and Rotate Instructions](shift-and-rotate-instructions/README.md)
+{{ #include shift-and-rotate-instructions/README.md:table }}
 
+[SAL,SAR,SHL,SHR]: shift-and-rotate-instructions/sal,sar,shl,shr.md
 
+### [Bit and Byte Instructions](bit-and-byte-instructions/README.md)
+{{ #include bit-and-byte-instructions/README.md:table }}
 
+[TEST]: bit-and-byte-instructions/test.md
 
+### [Control Transfer Instructions](control-transfer-instructions/README.md)
+{{ #include control-transfer-instructions/README.md:table }}
 
+[JMP]: control-transfer-instructions/jmp.md
+[Jcc]: control-transfer-instructions/jcc.md
+[CALL]: control-transfer-instructions/call.md
+[RET]: control-transfer-instructions/ret.md
 
+### [Miscellaneous Instructions](miscellaneous-instructions/README.md)
+{{ #include miscellaneous-instructions/README.md:table }}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[LEA]: miscellaneous-instructions/lea.md
+[NOP]: miscellaneous-instructions/nop.md

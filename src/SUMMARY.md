@@ -1,8 +1,18 @@
 # Summary
 
+- [Prefix](prefix.md)
+---
 - [Registers](registers.md)
 - [Condition Codes](condition-codes.md)
 - [System V ABI](system-v-abi.md)
 - [Instructions](instructions/README.md)
-  - [`ADD`](instructions/add.md)
-  - [`SAL`|`SAR`|`SHL`|`SHR`](instructions/sal,sar,shl,shr.md)
+  - [Data Transfer Instructions](instructions/data-transfer-instructions/README.md)
+    - [`MOV`](instructions/data-transfer-instructions/mov.md)
+  - [Binary Arithmetic Instructions](instructions/binary-arithmetic-instructions/README.md)
+    - [`ADD`](instructions/binary-arithmetic-instructions/add.md)
+  - [Logical Instructions](instructions/logical-instructions/README.md)
+  - [Shift and Rotate Instructions](instructions/shift-and-rotate-instructions/README.md)
+    - [`SAL`|`SAR`|`SHL`|`SHR`](instructions/shift-and-rotate-instructions/sal,sar,shl,shr.md)
+  - [Bit and Byte Instructions](instructions/bit-and-byte-instructions/README.md)
+  - [Control Transfer Instructions](instructions/control-transfer-instructions/README.md)
+  - [Miscellaneous Instructions](instructions/miscellaneous-instructions/README.md)
