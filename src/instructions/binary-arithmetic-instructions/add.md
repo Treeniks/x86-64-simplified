@@ -1,17 +1,26 @@
 # ADD
 Add
 
-| Instruction          | Description                            |
-| :------------------- | :------------------------------------- |
-| `ADD r/m8, imm8`     | Add `imm8` to `r/m8`                   |
-| `ADD r/m16, imm16`   | Add `imm16` to `r/m16`                 |
-| `ADD r/m32, imm32`   | Add `imm32` to `r/m32`                 |
-| `ADD r/m64, imm32`   | Add sign-extended `imm32` to `r/m64`   |
-|                      |                                        |
-| `ADD r/m16-64, imm8` | Add sign-extended `imm8` to `r/m16-64` |
-|                      |                                        |
-| `ADD r/m, r`         | Add `r` to `r/m`                       |
-| `ADD r, r/m`         | Add `r/m` to `r`                       |
+| Instruction        | Description                          |
+| :----------------- | :----------------------------------- |
+| `ADD r/m8, imm8`   | Add `imm8` to `r/m8`                 |
+| `ADD r/m16, imm16` | Add `imm16` to `r/m16`               |
+| `ADD r/m32, imm32` | Add `imm32` to `r/m32`               |
+| `ADD r/m64, imm32` | Add sign-extended `imm32` to `r/m64` |
+|                    |                                      |
+| `ADD r/m16, imm8`  | Add sign-extended `imm8` to `r/m16`  |
+| `ADD r/m32, imm8`  | Add sign-extended `imm8` to `r/m32`  |
+| `ADD r/m64, imm8`  | Add sign-extended `imm8` to `r/m64`  |
+|                    |                                      |
+| `ADD r/m8, r8`     | Add `r8` to `r/m8`                   |
+| `ADD r/m16, r16`   | Add `r16` to `r/m16`                 |
+| `ADD r/m32, r32`   | Add `r32` to `r/m32`                 |
+| `ADD r/m64, r64`   | Add `r64` to `r/m64`                 |
+|                    |                                      |
+| `ADD r8, r/m8`     | ADD `r/m8` to `r8`                   |
+| `ADD r16, r/m16`   | ADD `r/m16` to `r16`                 |
+| `ADD r32, r/m32`   | ADD `r/m32` to `r32`                 |
+| `ADD r64, r/m64`   | ADD `r/m64` to `r64`                 |
 
 ## Operation
 `DEST`: first operand\
