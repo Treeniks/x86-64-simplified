@@ -19,3 +19,5 @@
 | `nge`, `l`       | Not Greater or Equal, Less          | `SF != OF`              |
 | `g`, `nle`       | Greater, Not Less or Equal          | `ZF == 0` & `SF == OF`  |
 | `ng`, `le`       | Not Greater, Less or Equal          | `ZF == 1` \| `SF != OF` |
+
+<sub>adapted from <https://riptutorial.com/x86/example/6976/flags-register></sub>

@@ -3,8 +3,8 @@
 - [Prefix](prefix.md)
 ---
 - [Registers](registers.md)
+- [Flags](flags.md)
 - [Condition Codes](condition-codes.md)
-- [System V ABI](system-v-abi.md)
 - [Instructions](instructions/README.md)
   - [Data Transfer Instructions](instructions/data-transfer-instructions/README.md)
     - [`MOV`](instructions/data-transfer-instructions/mov.md)
@@ -16,3 +16,4 @@
   - [Bit and Byte Instructions](instructions/bit-and-byte-instructions/README.md)
   - [Control Transfer Instructions](instructions/control-transfer-instructions/README.md)
   - [Miscellaneous Instructions](instructions/miscellaneous-instructions/README.md)
+- [System V ABI](system-v-abi.md)
