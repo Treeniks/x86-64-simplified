@@ -25,8 +25,8 @@ Add
 ## Operation
 `DEST`: first operand\
 `SRC`: second operand
-```
-DEST := DEST + SRC;
+```rust,no_run,noplayground,ignore
+DEST = DEST + SRC;
 ```
 
 ## Flags Affected

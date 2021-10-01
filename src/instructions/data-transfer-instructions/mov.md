@@ -22,8 +22,8 @@ Move
 ## Operation
 `DEST`: first operand\
 `SRC`: second operand
-```
-DEST := SRC;
+```rust,no_run,noplayground,ignore
+DEST = SRC;
 ```
 
 ## Flags Affected

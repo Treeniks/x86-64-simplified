@@ -10,6 +10,7 @@
     - [`MOV`](instructions/data-transfer-instructions/mov.md)
   - [Binary Arithmetic Instructions](instructions/binary-arithmetic-instructions/README.md)
     - [`ADD`](instructions/binary-arithmetic-instructions/add.md)
+    - [`SUB`](instructions/binary-arithmetic-instructions/sub.md)
   - [Logical Instructions](instructions/logical-instructions/README.md)
   - [Shift and Rotate Instructions](instructions/shift-and-rotate-instructions/README.md)
     - [`SAL`|`SAR`|`SHL`|`SHR`](instructions/shift-and-rotate-instructions/sal,sar,shl,shr.md)

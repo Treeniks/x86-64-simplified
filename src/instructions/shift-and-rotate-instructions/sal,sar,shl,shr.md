@@ -55,64 +55,38 @@ Left Shifts always fill with 0s, thus `SAL` and `SHL` are synonymous.
 
 ## Operation
 `DEST`: first operand\
-`SRC`: second operand
+`COUNT`: second operand\
+`countMASK`: `0b00111111`<sup>=64</sup> for 64-bit operations, `0b00011111`<sup>=31</sup> otherwise
+
+### `SAL`|`SHL`
+```rust,no_run,noplayground,ignore
+tempCOUNT = COUNT & countMASK;
+while tempCOUNT != 0 {
+    DEST = DEST * 2;
+    tempCOUNT = tempCOUNT - 1;
+}
 ```
-IF 64-Bit Mode and using REX.W
-    THEN
-        countMASK := 3FH;
-    ELSE
-        countMASK := 1FH;
-FI
 
-tempCOUNT := (COUNT AND countMASK);
-tempDEST := DEST;
-WHILE (tempCOUNT ≠ 0)
-DO
-    IF instruction is SAL or SHL
-        THEN
-            CF := MSB(DEST);
-        ELSE (* Instruction is SAR or SHR *)
-            CF := LSB(DEST);
-    FI;
-    IF instruction is SAL or SHL
-        THEN
-            DEST := DEST ∗ 2;
-        ELSE
-            IF instruction is SAR
-                THEN
-                    DEST := DEST / 2; (* Signed divide, rounding toward negative infinity *)
-                ELSE (* Instruction is SHR *)
-                    DEST := DEST / 2 ; (* Unsigned divide *)
-            FI;
-    FI;
-    tempCOUNT := tempCOUNT – 1;
-OD;
+### `SAR`
+```rust,no_run,noplayground,ignore
+tempCOUNT = COUNT & countMASK;
+while tempCOUNT != 0 {
+    DEST = DEST / 2; // signed divide, rounding toward negative infinity
+    tempCOUNT = tempCOUNT - 1;
+}
+```
 
-(* Determine overflow for the various instructions *)
-IF (COUNT and countMASK) = 1
-    THEN
-        IF instruction is SAL or SHL
-            THEN
-                OF := MSB(DEST) XOR CF;
-            ELSE
-                IF instruction is SAR
-                    THEN
-                        OF := 0;
-                    ELSE (* Instruction is SHR *)
-                        OF := MSB(tempDEST);
-                FI;
-        FI;
-    ELSE IF (COUNT AND countMASK) = 0
-        THEN
-            All flags unchanged;
-        ELSE (* COUNT not 1 or 0 *)
-            OF := undefined;
-    FI;
-FI;
+### `SHR`
+```rust,no_run,noplayground,ignore
+tempCOUNT = COUNT & countMASK;
+while tempCOUNT != 0 {
+    DEST = DEST / 2; // unsigned divide
+    tempCOUNT = tempCOUNT - 1;
+}
 ```
 
 ## Flags Affected
-The `CF` flag contains the value of the last bit shifted out of the destination operand; it is undefined for `SHL` and `SHR` instructions where the count is greater than or equal to the size (in bits) of the destination operand. The `OF` flag is affected only for 1-bit shifts (see “Description” above); otherwise, it is undefined. The `SF`, `ZF`, and `PF` flags are set according to the result. If the count is 0, the flags are not affected. For a non-zero count, the `AF` flag is undefined.
+The `CF` flag contains the value of the last bit shifted out of the destination operand; it is undefined for `SHL` and `SHR` instructions where the count is greater than or equal to the size (in bits) of the destination operand. The `OF` flag is affected only for 1-bit shifts (see [Description](#description) below); otherwise, it is undefined. The `SF`, `ZF`, and `PF` flags are set according to the result. If the count is 0, the flags are not affected. For a non-zero count, the `AF` flag is undefined.
 
 ## Description
 Shifts the bits in the first operand (destination operand) to the left or right by the number of bits specified in the second operand (count operand). Bits shifted beyond the destination operand boundary are first shifted into the `CF` flag, then discarded. At the end of the shift operation, the `CF` flag contains the last bit shifted out of the destination operand.

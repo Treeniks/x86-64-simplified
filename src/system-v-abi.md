@@ -15,4 +15,4 @@ can be used freely inside function
 further values on stack in reverse order
 
 ## Return Value
-`rax`, (128-bit: higher go in `rdx`)
+`rax` (128-bit: higher go in `rdx`)
