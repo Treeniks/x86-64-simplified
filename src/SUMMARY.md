@@ -15,6 +15,7 @@
   - [Shift and Rotate Instructions](instructions/shift-and-rotate-instructions/README.md)
     - [`SAL`|`SAR`|`SHL`|`SHR`](instructions/shift-and-rotate-instructions/sal,sar,shl,shr.md)
   - [Bit and Byte Instructions](instructions/bit-and-byte-instructions/README.md)
+    - [`TEST`](instructions/bit-and-byte-instructions/test.md)
   - [Control Transfer Instructions](instructions/control-transfer-instructions/README.md)
   - [Miscellaneous Instructions](instructions/miscellaneous-instructions/README.md)
 - [System V ABI](system-v-abi.md)

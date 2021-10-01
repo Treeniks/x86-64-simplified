@@ -62,8 +62,19 @@ Left Shifts always fill with 0s, thus `SAL` and `SHL` are synonymous.
 ```rust,no_run,noplayground,ignore
 tempCOUNT = COUNT & countMASK;
 while tempCOUNT != 0 {
+    CF = MSB(DEST);
     DEST = DEST * 2;
     tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT & countMASK == 1 {
+    OF = MSB(DEST) ^ CF;
+} else if COUNT & countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
 }
 ```
 
@@ -71,8 +82,19 @@ while tempCOUNT != 0 {
 ```rust,no_run,noplayground,ignore
 tempCOUNT = COUNT & countMASK;
 while tempCOUNT != 0 {
+    CF = LSB(DEST);
     DEST = DEST / 2; // signed divide, rounding toward negative infinity
     tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT & countMASK == 1 {
+    OF = 0;
+} else if COUNT & countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
 }
 ```
 
@@ -80,8 +102,19 @@ while tempCOUNT != 0 {
 ```rust,no_run,noplayground,ignore
 tempCOUNT = COUNT & countMASK;
 while tempCOUNT != 0 {
+    CF = LSB(DEST);
     DEST = DEST / 2; // unsigned divide
     tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT & countMASK == 1 {
+    OF = MSB(tempDEST);
+} else if COUNT & countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
 }
 ```
 

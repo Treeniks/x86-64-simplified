@@ -1,5 +1,10 @@
 # Instructions
 ## How to read Instructions
+### Operation
+- `MSB`: Most Significant Bit
+- `LSB`: Least Significant Bit
+
+The Syntax for the Operations closely follows the Rust syntax. Thus, Operators like `^` for XOR, `&` for Bitwise AND and `|` for Bitwise OR are used.
 
 ## Instruction Set Summary
 ### [Data Transfer Instructions](data-transfer-instructions/README.md)
