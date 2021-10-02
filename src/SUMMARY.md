@@ -10,7 +10,7 @@
     - [`MOV`](instructions/data-transfer-instructions/mov.md)
     - [`XCHG`](instructions/data-transfer-instructions/xchg.md)
     - [`PUSH`](instructions/data-transfer-instructions/push.md)
-    - [`POP`](instruction/data-transfer-instructions/pop.md)
+    - [`POP`](instructions/data-transfer-instructions/pop.md)
   - [Binary Arithmetic Instructions](instructions/binary-arithmetic-instructions/README.md)
     - [`ADD`](instructions/binary-arithmetic-instructions/add.md)
     - [`SUB`](instructions/binary-arithmetic-instructions/sub.md)

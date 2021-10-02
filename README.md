@@ -14,7 +14,7 @@
     - [`MOV`](src/instructions/data-transfer-instructions/mov.md)
     - [`XCHG`](src/instructions/data-transfer-instructions/xchg.md)
     - [`PUSH`](src/instructions/data-transfer-instructions/push.md)
-    - [`POP`](src/instruction/data-transfer-instructions/pop.md)
+    - [`POP`](src/instructions/data-transfer-instructions/pop.md)
   - [Binary Arithmetic Instructions](src/instructions/binary-arithmetic-instructions/README.md)
     - [`ADD`](src/instructions/binary-arithmetic-instructions/add.md)
     - [`SUB`](src/instructions/binary-arithmetic-instructions/sub.md)
