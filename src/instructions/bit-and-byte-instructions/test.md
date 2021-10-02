@@ -15,10 +15,15 @@ The same operation as [`AND`](../logical-instructions/and.md), but do not save t
 | `TEST r/m32, r32`   | AND `r32` with `r/m32`; only set Flags                 |
 | `TEST r/m64, r64`   | AND `r64` with `r/m64`; only set Flags                 |
 
+## Description
+Computes the bit-wise logical `AND` of first operand (source 1 operand) and the second operand (source 2 operand) and sets the `SF`, `ZF`, and `PF` status flags according to the result. The result is then discarded.
+
+In 64-bit mode, using a `REX` prefix in the form of `REX.R` permits access to additional registers (`R8`-`R15`). Using a `REX` prefix in the form of `REX.W` promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
+
 ## Operation
 `SRC1`: first operand\
 `SRC2`: second operand
-```rust,no_run,noplayground,ignore
+```rust,ignore
 TEMP = SRC1 & SRC2;
 SF = MSB(TEMP);
 
@@ -36,10 +41,3 @@ OF = 0;
 
 ## Flags Affected
 The `OF` and `CF` flags are set to 0. The `SF`, `ZF`, and `PF` flags are set according to the result (see the [Operation section](#operation) above). The state of the `AF` flag is undefined.
-
-## Description
-Adds the destination operand (first operand) and the source operand (second operand) and then stores the result in the destination operand. The destination operand can be a register or a memory location; the source operand can be an immediate, a register, or a memory location. (However, two memory operands cannot be used in one instruction.) When an immediate value is used as an operand, it is sign-extended to the length of the destination operand format.
-
-The ADD instruction performs integer addition. It evaluates the result for both signed and unsigned integer operands and sets the OF and CF flags to indicate a carry (overflow) in the signed or unsigned result, respectively. The SF flag indicates the sign of the signed result.
-
-This instruction can be used with a LOCK prefix to allow the instruction to be executed atomically.
