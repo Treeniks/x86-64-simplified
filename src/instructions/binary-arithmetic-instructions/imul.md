@@ -1,27 +1,26 @@
 # IMUL
 Signed Multiply
 
-| Instruction                  | Description                          |
-| :--------------------------- | :----------------------------------- |
-| `IMUL r/m8`                  | `AX = AL * r/m8`                     |
-| `IMUL r/m16`                 | `DX:AX = AX * r/m16`                 |
-| `IMUL r/m32`                 | `EDX:EAX = EAX * r/m32`              |
-| `IMUL r/m64`                 | `RDX:RAX = RAX * r/m64`              |
-|                              |                                      |
-| `IMUL r16, r/m16`            | `r16 = r16 * r/m16`                  |
-| `IMUL r32, r/m32`            | `r32 = r32 * r/m32`                  |
-| `IMUL r64, r/m64`            | `r64 = r64 * r/m64`                  |
-|                              |                                      |
-| `IMUL r16, r/m16, imm16`*    | `r16 = r/m16 * imm16`                |
-| `IMUL r32, r/m32, imm32`*    | `r32 = r/m32 * imm32`                |
-| `IMUL r64, r/m64, imm32`* ** | `r64 = r/m64 * imm32`                |
-|                              |                                      |
-| `IMUL r16, r/m16, imm8`*     | `r16 = r/m16 *` sign extended `imm8` |
-| `IMUL r32, r/m32, imm8`*     | `r32 = r/m32 *` sign extended `imm8` |
-| `IMUL r64, r/m64, imm8`*     | `r64 = r/m64 *` sign extended `imm8` |
+| Instruction               | Description                          |
+| :------------------------ | :----------------------------------- |
+| `IMUL r/m8`               | `AX = AL * r/m8`                     |
+| `IMUL r/m16`              | `DX:AX = AX * r/m16`                 |
+| `IMUL r/m32`              | `EDX:EAX = EAX * r/m32`              |
+| `IMUL r/m64`              | `RDX:RAX = RAX * r/m64`              |
+|                           |                                      |
+| `IMUL r16, r/m16`         | `r16 = r16 * r/m16`                  |
+| `IMUL r32, r/m32`         | `r32 = r32 * r/m32`                  |
+| `IMUL r64, r/m64`         | `r64 = r64 * r/m64`                  |
+|                           |                                      |
+| `IMUL r16, r/m16, imm16`* | `r16 = r/m16 * imm16`                |
+| `IMUL r32, r/m32, imm32`* | `r32 = r/m32 * imm32`                |
+| `IMUL r64, r/m64, imm32`* | `r64 = r/m64 * imm32`                |
+|                           |                                      |
+| `IMUL r16, r/m16, imm8`*  | `r16 = r/m16 *` sign extended `imm8` |
+| `IMUL r32, r/m32, imm8`*  | `r32 = r/m32 *` sign extended `imm8` |
+| `IMUL r64, r/m64, imm8`*  | `r64 = r/m64 *` sign extended `imm8` |
 
-\* If the first two operands are the same, the second one can be left out when using `nasm` or `.intel_syntax noprefix`.\
-\** This instruction seems to only work consistently when a 31-bit immediate is used. Using a 32-bit immediate gives warnings with `nasm` and errors with `gcc`. See <https://stackoverflow.com/questions/69415210/why-do-32-bit-immediates-with-imul-give-warnings-with-nasm-and-errors-with-gcc>.
+\* If the first two operands are the same, the second one can be left out when using `nasm` or `.intel_syntax noprefix`.
 
 ## Description
 Performs a signed multiplication of two operands. This instruction has three forms, depending on the number of operands.
