@@ -1,12 +1,12 @@
 # `IDIV`
 Signed Divide
 
-| Instruction  | Description                                                      |
-| :----------- | :--------------------------------------------------------------- |
-| `IDIV r/m8`  | Signed divide `AX` by `r/m8`; `AL` = Quotient, `AH` = Remainder  |
-| `IDIV r/m16` | Signed divide `AX` by `r/m16`; `AL` = Quotient, `AH` = Remainder |
-| `IDIV r/m32` | Signed divide `AX` by `r/m32`; `AL` = Quotient, `AH` = Remainder |
-| `IDIV r/m64` | Signed divide `AX` by `r/m64`; `AL` = Quotient, `AH` = Remainder |
+| Instruction  | Description                                                        |
+| :----------- | :----------------------------------------------------------------- |
+| `IDIV r/m8`  | Signed divide `AX` by `r/m8`; `AL` = Quotient, `AH` = Remainder    |
+| `IDIV r/m16` | Signed divide `AX` by `r/m16`; `AX` = Quotient, `DX` = Remainder   |
+| `IDIV r/m32` | Signed divide `AX` by `r/m32`; `EAX` = Quotient, `EDX` = Remainder |
+| `IDIV r/m64` | Signed divide `AX` by `r/m64`; `RAX` = Quotient, `RDX` = Remainder |
 
 ## Description
 Divides the (signed) value in the `AX`, `DX:AX`, or `EDX:EAX` (dividend) by the source operand (divisor) and stores the result in the `AX` (`AH:AL`), `DX:AX`, or `EDX:EAX` registers. The source operand can be a general-purpose register or a memory location. The action of this instruction depends on the operand size (dividend/divisor).
