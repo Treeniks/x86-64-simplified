@@ -8,6 +8,15 @@ Signed Divide
 | `IDIV r/m32` | Signed divide `EDX:EAX` by `r/m32`; `EAX` = Quotient, `EDX` = Remainder |
 | `IDIV r/m64` | Signed divide `RDX:RAX` by `r/m64`; `RAX` = Quotient, `RDX` = Remainder |
 
+$$
+\begin{aligned}
+\verb!AL! &= \frac{\verb!AX!}{\verb!r/m8!} & \verb!AH! &= \verb!AX! \mod \verb!r/m8! \\
+\verb!AX! &= \frac{\verb!DX:AX!}{\verb!r/m16!} & \verb!DX! &= \verb!DX:AX! \mod \verb!r/m16! \\
+\verb!EAX! &= \frac{\verb!EDX:EAX!}{\verb!r/m32!} & \verb!EDX! &= \verb!EDX:EAX! \mod \verb!r/m32! \\
+\verb!RAX! &= \frac{\verb!RDX:RAX!}{\verb!r/m64!} & \verb!RDX! &= \verb!RDX:RAX! \mod \verb!r/m64!
+\end{aligned}
+$$
+
 ## Description
 Divides the (signed) value in the `AX`, `DX:AX`, or `EDX:EAX` (dividend) by the source operand (divisor) and stores the result in the `AX` (`AH:AL`), `DX:AX`, or `EDX:EAX` registers. The source operand can be a general-purpose register or a memory location. The action of this instruction depends on the operand size (dividend/divisor).
 
