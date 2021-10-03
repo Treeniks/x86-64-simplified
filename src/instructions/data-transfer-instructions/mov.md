@@ -1,4 +1,4 @@
-# MOV
+# `MOV`
 Move
 
 | Instruction        | Description                           |

@@ -1,4 +1,4 @@
-# XCHG
+# `XCHG`
 Exchange Register/Memory with Register
 
 | Instruction       | Description                 |

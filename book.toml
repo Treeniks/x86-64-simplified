@@ -21,3 +21,5 @@ level = 1
 [preprocessor.links]
 
 [preprocessor.svgbob2]
+
+[preprocessor.katex]

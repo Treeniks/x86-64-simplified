@@ -1,4 +1,4 @@
-# POP
+# `POP`
 Pop a Value from the Stack
 
 | Instruction | Description                                            |
@@ -41,10 +41,10 @@ In 64-bit mode, using a `REX` prefix in the form of `REX.R` permits access to ad
 ## Operation
 `DEST`: operand
 
-### OperandSize = 64
+### OperandSize = 16
 ```rust,ignore
 DEST = SS:RSP;
-RSP = RSP + 8;
+RSP = RSP + 2;
 ```
 
 ### OperandSize = 32
@@ -53,10 +53,10 @@ DEST = SS:RSP;
 RSP = RSP + 4;
 ```
 
-### OperandSize = 16
+### OperandSize = 64
 ```rust,ignore
 DEST = SS:RSP;
-RSP = RSP + 2;
+RSP = RSP + 8;
 ```
 
 ## Flags Affected

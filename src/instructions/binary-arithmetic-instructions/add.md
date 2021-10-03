@@ -1,4 +1,4 @@
-# ADD
+# `ADD`
 Add
 
 | Instruction        | Description                          |

@@ -11,6 +11,7 @@ before_script:
   - (test -x $HOME/.cargo/bin/cargo-install-update || cargo install cargo-update)
   - (test -x $HOME/.cargo/bin/mdbook || cargo install mdbook)
   - (test -x $HOME/.cargo/bin/mdbook-svgbob2 || cargo install mdbook-svgbob2)
+  - (test -x $HOME/.cargo/bin/mdbook-katex || cargo install mdbook-katex)
   - cargo install-update -a
 
 script:

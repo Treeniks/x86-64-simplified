@@ -1,4 +1,4 @@
-# IMUL
+# `IMUL`
 Signed Multiply
 
 | Instruction               | Description                          |

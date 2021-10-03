@@ -1,4 +1,4 @@
-# SUB
+# `SUB`
 Subtract
 
 | Instruction        | Description                                 |

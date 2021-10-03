@@ -1,4 +1,4 @@
-# TEST
+# `TEST`
 Logical Compare
 
 The same operation as [`AND`](../logical-instructions/and.md), but do not save the result in a register, only keep the flags.

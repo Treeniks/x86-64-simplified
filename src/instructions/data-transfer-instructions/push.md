@@ -1,4 +1,4 @@
-# PUSH
+# `PUSH`
 Push Word, Doubleword or Quadword Onto the Stack
 
 | Instruction  | Description  |
@@ -38,10 +38,10 @@ See Description section for possible sign-extension or zero-extension of source 
 
 `SRC`: operand
 
-### OperandSize = 64
+### OperandSize = 16
 ```rust,ignore
-// push quadword
-RSP = RPS - 8;
+// push word
+RSP = RSP - 2;
 Memory[SS:RSP] = SRC;
 ```
 
@@ -52,10 +52,10 @@ RSP = RSP - 4;
 Memory[SS:RSP] = SRC;
 ```
 
-### OperandSize = 16
+### OperandSize = 64
 ```rust,ignore
-// push word
-RSP = RSP - 2;
+// push quadword
+RSP = RPS - 8;
 Memory[SS:RSP] = SRC;
 ```
 
