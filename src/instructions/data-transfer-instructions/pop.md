@@ -15,10 +15,10 @@ Pop a Value from the Stack
 Loads the value from the top of the stack to the location specified with the destination operand (or explicit opcode) and then increments the stack pointer. The destination operand can be a general-purpose register, memory location, or segment register.
 
 Address and operand sizes are determined and used as follows:
-* Address size. The `D` flag in the current code-segment descriptor determines the default address size; it may be overridden by an instruction prefix (`67H`).
+* Address size. The `D` flag in the current code-segment descriptor determines the default address size; it may be overridden by an instruction prefix (`0x67`).
 
   The address size is used only when writing to a destination operand in memory.
-* Operand size. The `D` flag in the current code-segment descriptor determines the default operand size; it may be overridden by instruction prefixes (`66H` or `REX.W`).
+* Operand size. The `D` flag in the current code-segment descriptor determines the default operand size; it may be overridden by instruction prefixes (`0x66` or `REX.W`).
 
   The operand size (16, 32, or 64 bits) determines the amount by which the stack pointer is incremented (2, 4 or 8).
 * Stack-address size. Outside of 64-bit mode, the B flag in the current stack-segment descriptor determines the size of the stack pointer (16 or 32 bits); in 64-bit mode, the size of the stack pointer is always 64 bits.
@@ -26,11 +26,11 @@ Address and operand sizes are determined and used as follows:
   The stack-address size determines the width of the stack pointer when reading from the stack in memory and when incrementing the stack pointer. (As stated above, the amount by which the stack pointer is incremented is determined by the operand size.)
 If the destination operand is one of the segment registers `DS`, `ES`, `FS`, `GS`, or `SS`, the value loaded into the register must be a valid segment selector. In protected mode, popping a segment selector into a segment register automatically causes the descriptor information associated with that segment selector to be loaded into the hidden (shadow) part of the segment register and causes the selector and the descriptor information to be validated (see the [Operation section](#operation) below).
 
-A `NULL` value (0000-0003) may be popped into the `DS`, `ES`, `FS`, or `GS` register without causing a general protection fault. However, any subsequent attempt to reference a segment whose corresponding segment register is loaded with a `NULL` value causes a general protection exception (#GP). In this situation, no memory reference occurs and the saved value of the segment register is `NULL`.
+A `NULL` value (0000-0003) may be popped into the `DS`, `ES`, `FS`, or `GS` register without causing a general protection fault. However, any subsequent attempt to reference a segment whose corresponding segment register is loaded with a `NULL` value causes a general protection exception (`#GP`). In this situation, no memory reference occurs and the saved value of the segment register is `NULL`.
 
 The `POP` instruction cannot pop a value into the `CS` register. To load the `CS` register from the stack, use the `RET` instruction.
 
-If the `ESP` register is used as a base register for addressing a destination operand in memory, the `POP` instruction computes the effective address of the operand after it increments the `ESP` register. For the case of a 16-bit stack where `ESP` wraps to `0H` as a result of the `POP` instruction, the resulting location of the memory write is processor-family-specific.
+If the `ESP` register is used as a base register for addressing a destination operand in memory, the `POP` instruction computes the effective address of the operand after it increments the `ESP` register. For the case of a 16-bit stack where `ESP` wraps to `0x0` as a result of the `POP` instruction, the resulting location of the memory write is processor-family-specific.
 
 The `POP ESP` instruction increments the stack pointer (`ESP`) before data at the old top of stack is written into the destination.
 
