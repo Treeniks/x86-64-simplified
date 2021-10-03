@@ -13,7 +13,7 @@ Performs an unsigned multiplication of the first operand (destination operand) a
 
 The result is stored in register `AX`, register pair `DX:AX`, or register pair `EDX:EAX` (depending on the operand size), with the high-order bits of the product contained in register `AH`, `DX`, or `EDX`, respectively. If the high-order bits of the product are 0, the `CF` and `OF` flags are cleared; otherwise, the flags are set.
 
-In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the `REX.R` prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits.
+In 64-bit mode, the instruction's default operation size is 32 bits. Use of the `REX.R` prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits.
 
 See the summary chart at the beginning of this section for encoding data and limits.
 

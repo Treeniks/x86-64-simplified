@@ -22,7 +22,7 @@ Divides unsigned the value in the `AX`, `DX:AX`, `EDX:EAX`, or `RDX:RAX` registe
 
 Non-integral results are truncated (chopped) towards 0. The remainder is always less than the divisor in magnitude. Overflow is indicated with the `#DE` (divide error) exception rather than with the `CF` flag.
 
-In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits. In 64-bit mode when `REX.W` is applied, the instruction divides the unsigned value in `RDX:RAX` by the source operand and stores the quotient in `RAX`, the remainder in `RDX`.
+In 64-bit mode, the instruction's default operation size is 32 bits. Use of the REX.R prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits. In 64-bit mode when `REX.W` is applied, the instruction divides the unsigned value in `RDX:RAX` by the source operand and stores the quotient in `RAX`, the remainder in `RDX`.
 
 See the summary chart at the beginning of this section for encoding data and limits. See the table below.
 

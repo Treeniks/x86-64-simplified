@@ -38,7 +38,7 @@ The three forms of the `IMUL` instruction are similar in that the length of the 
 
 The two- and three-operand forms may also be used with unsigned operands because the lower half of the product is the same regardless if the operands are signed or unsigned. The `CF` and `OF` flags, however, cannot be used to determine if the upper half of the result is non-zero.
 
-In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the `REX.R` prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits. Use of `REX.W` modifies the three forms of the instruction as follows.
+In 64-bit mode, the instruction's default operation size is 32 bits. Use of the `REX.R` prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits. Use of `REX.W` modifies the three forms of the instruction as follows.
 - **One-operand form**\
   The source operand (in a 64-bit general-purpose register or memory location) is multiplied by the value in the `RAX` register and the product is stored in the `RDX:RAX` registers.
 - **Two-operand form**\

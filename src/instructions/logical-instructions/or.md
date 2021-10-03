@@ -27,7 +27,7 @@ Performs a bitwise inclusive `OR` operation between the destination (first) and 
 
 This instruction can be used with a `LOCK` prefix to allow the instruction to be executed atomically.
 
-In 64-bit mode, the instruction’s default operation size is 32 bits. Using a `REX` prefix in the form of `REX.R` permits access to additional registers (`R8`-`R15`). Using a `REX` prefix in the form of `REX.W` promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
+In 64-bit mode, the instruction's default operation size is 32 bits. Using a `REX` prefix in the form of `REX.R` permits access to additional registers (`R8`-`R15`). Using a `REX` prefix in the form of `REX.W` promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
 ## Operation
 `DEST`: first operand\

@@ -31,10 +31,10 @@ Decrements the stack pointer and then stores the source operand on the top of th
   If the operand size is less than the stack-address size, the `PUSH` instruction may result in a misaligned stack pointer (a stack pointer that is not aligned on a doubleword or quadword boundary).
 The `PUSH ESP` instruction pushes the value of the `ESP` register as it existed before the instruction was executed. If a `PUSH` instruction uses a memory operand in which the `ESP` register is used for computing the operand address, the address of the operand is computed before the `ESP` register is decremented.
 
-If the `ESP` or `SP` register is 1 when the `PUSH` instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stackfault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 3A.
+If the `ESP` or `SP` register is 1 when the `PUSH` instruction is executed in real-address mode, a stack-fault exception (#SS) is generated (because the limit of the stack segment is violated). Its delivery encounters a second stackfault exception (for the same reason), causing generation of a double-fault exception (#DF). Delivery of the double-fault exception encounters a third stack-fault exception, and the logical processor enters shutdown mode. See the discussion of the double-fault exception in Chapter 6 of the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
 ## Operation
-See Description section for possible sign-extension or zero-extension of source operand and for a case in which the size of the memory store may be smaller than the instruction’s operand size
+See Description section for possible sign-extension or zero-extension of source operand and for a case in which the size of the memory store may be smaller than the instruction's operand size
 
 `SRC`: operand
 
