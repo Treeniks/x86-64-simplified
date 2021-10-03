@@ -1,0 +1,352 @@
+# `JMP`
+Jump
+
+| Instruction    | Description                                                                                  |
+| :------------- | :------------------------------------------------------------------------------------------- |
+| `JMP rel8`     | Jump short, `RIP` = `RIP` + 8-bit displacement sign-extended to 64-bits                      |
+| `JMP rel16`    | Jump near, relative, displacement relative to next instruction; Not supported in 64-bit mode |
+| `JMP rel32`    | Jump near, realtive, `RIP` = `RIP` + 32-bit displacement sign-extended to 64-bits            |
+|                |                                                                                              |
+| `JMP r/m16`    | Jump near, absolute indirect, address = zer-extended `r/m16`; Not supported in 64-bit mode   |
+| `JMP r/m32`    | Jump near, absolute indirect, address given in `r/m32`; Not supported in 64-bit mode         |
+| `JMP r/m64`    | Jump near, absolute indirect, `RIP` = 64-bit offset from register or memory                  |
+|                |                                                                                              |
+| `JMP ptr16:16` | Jump far, absolute, address given in operand                                                 |
+| `JMP ptr16:32` | Jump far, absolute, address given in operand                                                 |
+|                |                                                                                              |
+| `JMP m16:16`   | Jump far, absolute indirect, address given in operand                                        |
+| `JMP m16:32`   | Jump far, absolute indirect, address given in operand                                        |
+| `JMP m16:64`   | Jump far, absolute indirect, address given in operand                                        |
+
+## Description
+Transfers program control to a different point in the instruction stream without recording return information. The destination (target) operand specifies the address of the instruction being jumped to. This operand can be an immediate value, a general-purpose register, or a memory location.
+
+This instruction can be used to execute four different types of jumps:
+* **Near jump**\
+  A jump to an instruction within the current code segment (the segment currently pointed to by the `CS` register), sometimes referred to as an intrasegment jump.
+* **Short jump**\
+  A near jump where the jump range is limited to –128 to +127 from the current `EIP` value.
+* **Far jump**\
+  A jump to an instruction located in a different segment than the current code segment but at the same privilege level, sometimes referred to as an intersegment jump.
+* **Task switch**\
+  A jump to an instruction located in a different task.
+A task switch can only be executed in protected mode (see Chapter 7, in the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for information on performing task switches with the JMP instruction).
+
+### Near and Short Jumps
+When executing a near jump, the processor jumps to the address (within the current code segment) that is specified with the target operand. The target operand specifies either an absolute offset (that is an offset from the base of the code segment) or a relative offset (a signed displacement relative to the current value of the instruction pointer in the `EIP` register). A near jump to a relative offset of 8-bits (`rel8`) is referred to as a short jump. The `CS` register is not changed on near and short jumps.
+
+An absolute offset is specified indirectly in a general-purpose register or a memory location (`r/m16` or `r/m32`). The operand-size attribute determines the size of the target operand (16 or 32 bits). Absolute offsets are loaded directly into the `EIP` register. If the operand-size attribute is 16, the upper two bytes of the `EIP` register are cleared, resulting in a maximum instruction pointer size of 16 bits.
+
+A relative offset (`rel8`, `rel16`, or `rel32`) is generally specified as a label in assembly code, but at the machine code level, it is encoded as a signed 8-, 16-, or 32-bit immediate value. This value is added to the value in the `EIP` register. (Here, the `EIP` register contains the address of the instruction following the `JMP` instruction). When using relative offsets, the opcode (for short vs. near jumps) and the operand-size attribute (for near relative jumps) determines the size of the target operand (8, 16, or 32 bits).
+
+### Far Jumps in Real-Address or Virtual-8086 Mode
+When executing a far jump in real-address or virtual-8086 mode, the processor jumps to the code segment and offset specified with the target operand. Here the target operand specifies an absolute far address either directly with a pointer (`ptr16:16` or `ptr16:32`) or indirectly with a memory location (`m16:16` or `m16:32`). With the pointer method, the segment and address of the called procedure is encoded in the instruction, using a 4-byte (16-bit operand size) or 6-byte (32-bit operand size) far address immediate. With the indirect method, the target operand specifies a memory location that contains a 4-byte (16-bit operand size) or 6-byte (32-bit operand size) far address. The far address is loaded directly into the `CS` and `EIP` registers. If the operand-size attribute is 16, the upper two bytes of the `EIP` register are cleared.
+
+### Far Jumps in Protected Mode
+When the processor is operating in protected mode, the `JMP` instruction can be used to perform the following three types of far jumps:
+* A far jump to a conforming or non-conforming code segment.
+* A far jump through a call gate.
+* A task switch.
+(The `JMP` instruction cannot be used to perform inter-privilege-level far jumps.)
+
+In protected mode, the processor always uses the segment selector part of the far address to access the corresponding descriptor in the `GDT` or `LDT`. The descriptor type (code segment, call gate, task gate, or `TSS`) and access rights determine the type of jump to be performed.
+
+If the selected descriptor is for a code segment, a far jump to a code segment at the same privilege level is performed. (If the selected code segment is at a different privilege level and the code segment is non-conforming, a general-protection exception is generated.) A far jump to the same privilege level in protected mode is very similar to one carried out in real-address or virtual-8086 mode. The target operand specifies an absolute far address either directly with a pointer (`ptr16:16` or `ptr16:32`) or indirectly with a memory location (`m16:16` or `m16:32`). The operand-size attribute determines the size of the offset (16 or 32 bits) in the far address. The new code segment selector and its descriptor are loaded into `CS` register, and the offset from the instruction is loaded into the `EIP` register. Note that a call gate (described in the next paragraph) can also be used to perform far call to a code segment at the same privilege level. Using this mechanism provides an extra level of indirection and is the preferred method of making jumps between 16-bit and 32-bit code segments.
+
+When executing a far jump through a call gate, the segment selector specified by the target operand identifies the call gate. (The offset part of the target operand is ignored.) The processor then jumps to the code segment specified in the call gate descriptor and begins executing the instruction at the offset specified in the call gate. No stack switch occurs. Here again, the target operand can specify the far address of the call gate either directly with a pointer (`ptr16:16` or `ptr16:32`) or indirectly with a memory location (`m16:16` or `m16:32`).
+
+Executing a task switch with the `JMP` instruction is somewhat similar to executing a jump through a call gate. Here the target operand specifies the segment selector of the task gate for the task being switched to (and the offset part of the target operand is ignored). The task gate in turn points to the `TSS` for the task, which contains the segment selectors for the task's code and stack segments. The `TSS` also contains the `EIP` value for the next instruction that was to be executed before the task was suspended. This instruction pointer value is loaded into the `EIP` register so that the task begins executing again at this next instruction.
+
+The `JMP` instruction can also specify the segment selector of the `TSS` directly, which eliminates the indirection of the task gate. See Chapter 7 in Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 3A, for detailed information on the mechanics of a task switch.
+
+Note that when you execute at task switch with a `JMP` instruction, the nested task flag (`NT`) is not set in the `EFLAGS` register and the new `TSS`'s previous task link field is not loaded with the old task's `TSS` selector. A return to the previous task can thus not be carried out by executing the `IRET` instruction. Switching tasks with the `JMP` instruction differs in this regard from the `CALL` instruction which does set the `NT` flag and save the previous task link information, allowing a return to the calling task with an `IRET` instruction.
+
+Refer to Chapter 6, "Procedure Calls, Interrupts, and Exceptions" and Chapter 18, "Control-Flow Enforcement
+Technology (CET)" in the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 1 for `CET`
+details.
+
+### In 64-Bit Mode
+The instruction's operation size is fixed at 64 bits. If a selector points to a gate, then `RIP` equals the 64-bit displacement taken from gate; else `RIP` equals the zero-extended offset from the far pointer referenced in the instruction.
+
+See the summary chart at the beginning of this section for encoding data and limits.
+
+### Instruction ordering
+Instructions following a far jump may be fetched from memory before earlier instructions complete execution, but they will not execute (even speculatively) until all instructions prior to the far jump have completed execution (the later instructions may execute before data stored by the earlier instructions have become globally visible).
+
+Certain situations may lead to the next sequential instruction after a near indirect `JMP` being speculatively executed. If software needs to prevent this (e.g., in order to prevent a speculative execution side channel), then an `INT3` or `LFENCE` instruction opcode can be placed after the near indirect `JMP` in order to block speculative execution.
+
+## Operation
+```rust,ignore
+if /* near jump */ {
+    if /* 64-bit Mode */ {
+        if /* near relative jump */ {
+            // RIP is instruction following JMP instruction
+            tempRIP = RIP + DEST;
+        } else {
+            // near absolute jump
+            tempRIP = DEST;
+        }
+    } else {
+        if /* near relative jump */ {
+            // EIP is instruction following JMP instruction
+            tempEIP = EIP + DEST;
+        } else {
+            // near absolute jump
+            tempEIP = DEST;
+        }
+    }
+    if (IA32_EFER.LMA == 0 || target mode == Compatibility mode)
+            && /* tempEIP outside code segment limit */ {
+        ##GP(0);
+    }
+    if /* 64-bit mode and tempRIP is not canonical */ {
+        ##GP(0);
+    }
+    if OperandSize == 32 {
+        EIP = tempEIP;
+    } else {
+        if OperandSize == 16 {
+            EIP = tempEIP & 0x0000_FFFF;
+        } else {
+            // OperandSize == 64
+            RIP = tempRIP;
+        }
+    }
+    if /* JMP near indirect, absolute indirect */ {
+        if EndbranchEnabledAndNotSuppressed(CPL) {
+            if CPL == 3 {
+                if /* no 3EH prefix */ || IA32_U_CET.NO_TRACK_EN == 0 {
+                    IA32_U_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+                }
+            } else {
+                if /* no 3EH prefix */ || IA32_S_CET.NO_TRACK_EN == 0 {
+                    IA32_S_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+                }
+            }
+        }
+    }
+}
+
+if /* far jump */ && (PE == 0 || (PE == 1 && VM == 1)) {
+    // real-address or virtual-8086 mode
+    tempEIP = DEST(Offset); // DEST is ptr16:32 or [m16:32]
+    if /* tempEIP is beyond code segment limit */ {
+        ##GP(0);
+    }
+    CS = DEST(segment selector); // DEST is ptr16:32 or [m16:32]
+    if OperandSize == 32 {
+        EIP = tempEIP; // DEST is ptr16:32 or [m16:32]
+    } else {
+        // OperandSize == 16
+        EIP = tempEIP & 0x0000_FFFF; // clear upper 16 bits
+    }
+}
+
+if /* far jump */ && PE == 1 && VM == 0 {
+    // IA-32e mode or protected mode, not virtual-8086 mode
+    if /* effective address in the CS, DS, ES, FS, GS, or SS segment is illegal
+            or segment selector in target operand NULL */ {
+        ##GP(0);
+    }
+    if /* segment selector index not within descriptor table limits */ {
+        ##GP(new selector);
+    }
+    /* read type and access rights of segment descriptor; */
+    if IA32_EFER.LMA == 0 {
+        if /* segment type is not a conforming or nonconforming code
+                segment, call gate, task gate, or TSS */ {
+            ##GP(segment selector);
+        }
+    } else {
+        if /* segment type is not a conforming or nonconforming code segment
+                call gate */ {
+            ##GP(segment selector);
+        }
+    }
+    /* Depending on type and access rights: */
+        goto CONFORMING_CODE_SEGMENT;
+        goto NONCONFORMING_CODE_SEGMENT;
+        goto CALL_GATE;
+        goto TASK_GATE;
+        goto TASK_STATE_SEGMENT;
+} else {
+    ##GP(segment selector);
+}
+
+'CONFORMING_CODE_SEGMENT {
+    if L-Bit == 1 && D-BIT == 1 && IA32_EFER.LMA == 1 {
+        ##GP(new code segment selector);
+    }
+    if DPL > CPL {
+        ##GP(segment selector);
+    }
+    if /* segment not present */ {
+        ##NP(segment selector);
+    }
+    tempEIP = DEST(Offset);
+    if OperandSize == 16 {
+        tempEIP = tempEIP & 0x0000_FFFF;
+    }
+    if (IA32_EFER.LMA == 0 || target mode == Compatibility mode)
+            && /* tempEIP outside code segment limit */ {
+        ##GP(0);
+    }
+    if /* tempEIP is non-canonical */ {
+        ##GP(0);
+    }
+    if ShadowStackEnabled(CPL) {
+        if (IA32_EFER.LMA & DEST(segment selector).L) == 0 {
+            // if target is legacy or compatibility mode then the SSP must be in low 4GB
+            if SSP & 0xFFFF_FFFF_0000_0000 != 0
+                ##GP(0);
+            FI;
+        }
+    }
+    CS = DEST[segment selector]; // segment descriptor information also loaded
+    CS(RPL) = CPL
+    EIP = tempEIP;
+    if EndbranchEnabled(CPL) {
+        if CPL = 3 {
+            IA32_U_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_U_CET.SUPPRESS = 0;
+        } else {
+            IA32_S_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_S_CET.SUPPRESS = 0;
+        }
+    }
+}
+
+'NONCONFORMING_CODE_SEGMENT {
+    if L-Bit == 1 && D-BIT == 1 && IA32_EFER.LMA == 1 {
+        ##GP(new code segment selector);
+    }
+    if (RPL > CPL) || (DPL != CPL) {
+        ##GP(code segment selector);
+    }
+    if /* segment not present */ {
+        ##NP(segment selector);
+    }
+    tempEIP = DEST(Offset);
+    if OperandSize == 16 {
+        tempEIP = tempEIP & 0x0000_FFFF;
+    }
+    if (IA32_EFER.LMA == 0 || target mode == Compatibility mode)
+            && /* tempEIP outside code segment limit */ {
+        ##GP(0);
+    }
+    if /* tempEIP is non-canonical */ {
+        ##GP(0);
+    }
+    if ShadowStackEnabled(CPL) {
+        if (IA32_EFER.LMA & DEST(segment selector).L) == 0 {
+            // if target is legacy or compatibility mode then the SSP must be in low 4GB
+            if (SSP & 0xFFFF_FFFF_0000_0000 != 0) {
+                ##GP(0);
+            }
+        }
+    }
+    CS = DEST[segment selector]; // segment descriptor information also loaded
+    CS(RPL) = CPL;
+    EIP = tempEIP;
+    if EndbranchEnabled(CPL) {
+        if CPL == 3 {
+            IA32_U_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_U_CET.SUPPRESS = 0;
+        } else {
+            IA32_S_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_S_CET.SUPPRESS = 0;
+        }
+    }
+}
+
+'CALL_GATE {
+    if call gate DPL < CPL
+            || call gate DPL < call gate segment-selector RPL {
+        ##GP(call gate selector);
+    }
+    if /* call gate not present */ {
+        ##NP(call gate selector);
+    }
+    if /* call gate code-segment selector is NULL */ {
+        ##GP(0);
+    }
+    if /* call gate code-segment selector index outside descriptor table limits */ {
+        ##GP(code segment selector);
+    }
+    /* Read code segment descriptor; */
+    if /* code-segment segment descriptor does not indicate a code segment */
+            || (/* code-segment segment descriptor is conforming */ && DPL > CPL)
+            || (/* code-segment segment descriptor is non-conforming */ && DPL != CPL)
+        ##GP(code segment selector);
+    }
+    if IA32_EFER.LMA == 1 && (/* code-segment descriptor is not a 64-bit code segment */
+            || /* code-segment segment descriptor has both L-Bit and D-bit set */) {
+        ##GP(code segment selector);
+    }
+    if /* code segment is not present */ {
+        ##NP(code-segment selector);
+    }
+    tempEIP = DEST(Offset);
+    if GateSize == 16 {
+        tempEIP = tempEIP & 0x0000_FFFF;
+    }
+    if (IA32_EFER.LMA == 0 || target mode == Compatibility mode)
+            && /* tempEIP outside code segment limit */ {
+        ##GP(0);
+    }
+    CS = DEST[SegmentSelector]; // segment descriptor information also loaded
+    CS(RPL) = CPL;
+    EIP = tempEIP;
+    if EndbranchEnabled(CPL) {
+        if CPL == 3 {
+            IA32_U_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_U_CET.SUPPRESS = 0;
+        } else {
+            IA32_S_CET.TRACKER = WAIT_FOR_ENDBRANCH;
+            IA32_S_CET.SUPPRESS = 0;
+        }
+    }
+}
+
+'TASK_GATE {
+    if task gate DPL < CPL
+            || task gate DPL < task gate segment-selector RPL {
+        ##GP(task gate selector);
+    }
+    if /* task gate not present */ {
+        ##NP(gate selector);
+    }
+    /* Read the TSS segment selector in the task-gate descriptor; */
+    if /* TSS segment selector local/global bit is set to local */
+            || /* index not within GDT limits */
+            || /* descriptor is not a TSS segment */
+            || /* TSS descriptor specifies that the TSS is busy */ {
+        ##GP(TSS selector);
+    }
+    if /* TSS not present */ {
+        ##NP(TSS selector);
+    }
+    SWITCH-TASKS to TSS;
+    if /* EIP not within code segment limit */ {
+        ##GP(0);
+    }
+}
+
+'TASK_STATE_SEGMENT {
+    if TSS DPL < CPL
+            || TSS DPL < TSS segment-selector RPL
+            || /* TSS descriptor indicates TSS not available */ {
+        ##GP(TSS selector);
+    }
+    if /* TSS is not present */ {
+        ##NP(TSS selector);
+    }
+    SWITCH-TASKS to TSS;
+    if /* EIP not within code segment limit */
+        ##GP(0);
+    }
+}
+```
+
+## Flags Affected
+All flags are affected if a task switch occurs; no flags are affected if a task switch does not occur.
