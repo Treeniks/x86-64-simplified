@@ -26,12 +26,12 @@ In 64-bit mode, the instruction’s default operation size is 32 bits. Use of th
 
 See the summary chart at the beginning of this section for encoding data and limits. See the table below.
 
-| Operand Size            | Dividend  | Divisor | Quotient | Remainder | Quotient Range               |
-| :---------------------- | :-------- | :------ | :------- | :-------- | :--------------------------- |
-| Word/byte               | `AX`      | `r/m8`  | `AL`     | `AH`      | $-128$ to $+127$             |
-| Doubleword/word         | `DX:AX`   | `r/m16` | `AX`     | `DX`      | $-32,768$ to $+32,767$       |
-| Quadword/doubleword     | `EDX:EAX` | `r/m32` | `EAX`    | `EDX`     | $-2^{31}$ to ${+2^{31} - 1}$ |
-| Doublequadword/quadword | `RDX:RAX` | `r/m64` | `RAX`    | `RDX`     | $-2^{63}$ to ${+2^{63} - 1}$ |
+| Operand Size            | Dividend  | Divisor | Quotient | Remainder | Quotient Range                         |
+| :---------------------- | :-------- | :------ | :------- | :-------- | :------------------------------------- |
+| Word/byte               | `AX`      | `r/m8`  | `AL`     | `AH`      | -128 to +127                           |
+| Doubleword/word         | `DX:AX`   | `r/m16` | `AX`     | `DX`      | -32,768 to +32,767                     |
+| Quadword/doubleword     | `EDX:EAX` | `r/m32` | `EAX`    | `EDX`     | -2<sup>31</sup> to +2<sup>31</sup> - 1 |
+| Doublequadword/quadword | `RDX:RAX` | `r/m64` | `RAX`    | `RDX`     | -2<sup>63</sup> to +2<sup>63</sup> - 1 |
 
 ## Operation
 `SRC`: operand

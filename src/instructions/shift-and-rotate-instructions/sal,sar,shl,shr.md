@@ -73,7 +73,7 @@ In 64-bit mode, the instruction’s default operation size is 32 bits and the ma
 ## Operation
 `DEST`: first operand\
 `COUNT`: second operand\
-`countMASK`: `0b00111111`<sup>=64</sup> for 64-bit operations, `0b00011111`<sup>=31</sup> otherwise
+`countMASK`: `0b00111111` (= 63) for 64-bit operations, `0b00011111` (= 31) otherwise
 
 ### `SAL`|`SHL`
 ```rust,ignore
