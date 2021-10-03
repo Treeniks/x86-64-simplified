@@ -20,6 +20,8 @@
     - [`DIV`](instructions/binary-arithmetic-instructions/div.md)
     - [`INC`](instructions/binary-arithmetic-instructions/inc.md)
     - [`DEC`](instructions/binary-arithmetic-instructions/dec.md)
+    - [`NEG`](instructions/binary-arithmetic-instructions/neg.md)
+    - [`CMP`](instructions/binary-arithmetic-instructions/cmp.md)
   - [Logical Instructions](instructions/logical-instructions/README.md)
   - [Shift and Rotate Instructions](instructions/shift-and-rotate-instructions/README.md)
     - [`SAL`|`SAR`|`SHL`|`SHR`](instructions/shift-and-rotate-instructions/sal,sar,shl,shr.md)
