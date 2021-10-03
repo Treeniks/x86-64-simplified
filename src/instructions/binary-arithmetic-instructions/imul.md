@@ -16,9 +16,9 @@ Signed Multiply
 | `IMUL r32, r/m32, imm32`* | `r32 = r/m32 * imm32`                |
 | `IMUL r64, r/m64, imm32`* | `r64 = r/m64 * imm32`                |
 |                           |                                      |
-| `IMUL r16, r/m16, imm8`*  | `r16 = r/m16 *` sign extended `imm8` |
-| `IMUL r32, r/m32, imm8`*  | `r32 = r/m32 *` sign extended `imm8` |
-| `IMUL r64, r/m64, imm8`*  | `r64 = r/m64 *` sign extended `imm8` |
+| `IMUL r16, r/m16, imm8`*  | `r16 = r/m16 *` sign-extended `imm8` |
+| `IMUL r32, r/m32, imm8`*  | `r32 = r/m32 *` sign-extended `imm8` |
+| `IMUL r64, r/m64, imm8`*  | `r64 = r/m64 *` sign-extended `imm8` |
 
 \* If the first two operands are the same, the second one can be left out when using `nasm` or `.intel_syntax noprefix`.
 
@@ -32,7 +32,7 @@ Performs a signed multiplication of two operands. This instruction has three for
   This form requires a destination operand (the first operand) and two source operands (the second and the third operands). Here, the first source operand (which can be a general-purpose register or a memory location) is multiplied by the second source operand (an immediate value). The intermediate product (twice the size of the first source operand) is truncated and stored in the destination operand (a general-purpose register).
 When an immediate value is used as an operand, it is sign-extended to the length of the destination operand format.
 
-The `CF` and `OF` flags are set when the signed integer value of the intermediate product differs from the sign extended operand-size-truncated product, otherwise the `CF` and `OF` flags are cleared.
+The `CF` and `OF` flags are set when the signed integer value of the intermediate product differs from the sign-extended operand-size-truncated product, otherwise the `CF` and `OF` flags are cleared.
 
 The three forms of the `IMUL` instruction are similar in that the length of the product is calculated to twice the length of the operands. With the one-operand form, the product is stored exactly in the destination. With the two- and three- operand forms, however, the result is truncated to the length of the destination before it is stored in the destination register. Because of this truncation, the `CF` or `OF` flag should be tested to ensure that no significant bits are lost.
 
@@ -44,7 +44,7 @@ In 64-bit mode, the instruction’s default operation size is 32 bits. Use of th
 - **Two-operand form**\
   The source operand is promoted to 64 bits if it is a register or a memory location. The destination operand is promoted to 64 bits.
 - **Three-operand form**\
-  The first source operand (either a register or a memory location) and destination operand are promoted to 64 bits. If the source operand is an immediate, it is sign extended to 64 bits.
+  The first source operand (either a register or a memory location) and destination operand are promoted to 64 bits. If the source operand is an immediate, it is sign-extended to 64 bits.
 
 ## Operation
 ### Single Operand

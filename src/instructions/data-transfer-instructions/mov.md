@@ -17,7 +17,7 @@ Move
 | `MOV r/m16, imm16` | Move `imm16` to `r/m16`               |
 | `MOV r/m32, imm32` | Move `imm32` to `r/m32`               |
 | `MOV r64, imm64`   | Move `imm64` to `r64`                 |
-| `MOV r/m64, imm32` | Move `imm32` sign extended to `r/m64` |
+| `MOV r/m64, imm32` | Move `imm32` sign-extended to `r/m64` |
 
 ## Description
 Copies the second operand (source operand) to the first operand (destination operand). The source operand can be an immediate value, general-purpose register, segment register, or memory location; the destination register can be a general-purpose register, segment register, or memory location. Both operands must be the same size, which can be a byte, a word, a doubleword, or a quadword.

@@ -3,28 +3,34 @@ Compare Two Operands
 
 The same operation as [`SUB`](../binary-arithmetic-instructions/sub.md), but do not save the result in a register, only keep the flags.
 
-| Instruction        | Description                                      |
-| :----------------- | :----------------------------------------------- |
-| `CMP r/m8, imm8`   | Compare `imm8` with `r/m8`                       |
-| `CMP r/m16, imm16` | Compare `imm16` with `r/m16`                     |
-| `CMP r/m32, imm32` | Compare `imm32` with `r/m32`                     |
-| `CMP r/m64, imm32` | Compare sign-extended `imm32` with `r/m64`       |
-|                    |                                                  |
-| `CMP r/m16, imm8`  | Compare (not sign-extended)* `imm8` with `r/m16` |
-| `CMP r/m32, imm8`  | Compare (not sign-extended)* `imm8` with `r/m32` |
-| `CMP r/m64, imm8`  | Compare (not sign-extended)* `imm8` with `r/m64` |
-|                    |                                                  |
-| `CMP r/m8, r8`     | Compare `r8` with `r/m8`                         |
-| `CMP r/m16, r16`   | Compare `r16` with `r/m16`                       |
-| `CMP r/m32, r32`   | Compare `r32` with `r/m32`                       |
-| `CMP r/m64, r64`   | Compare `r64` with `r/m64`                       |
-|                    |                                                  |
-| `CMP r8, r/m8`     | Compare `r/m8` with `r8`                         |
-| `CMP r16, r/m16`   | Compare `r/m16` with `r16`                       |
-| `CMP r32, r/m32`   | Compare `r/m32` with `r32`                       |
-| `CMP r64, r/m64`   | Compare `r/m64` with `r64`                       |
+| Instruction        | Description                                |
+| :----------------- | :----------------------------------------- |
+| `CMP r/m8, imm8`   | Compare `imm8` with `r/m8`                 |
+| `CMP r/m16, imm16` | Compare `imm16` with `r/m16`               |
+| `CMP r/m32, imm32` | Compare `imm32` with `r/m32`               |
+| `CMP r/m64, imm32` | Compare sign-extended `imm32` with `r/m64` |
+|                    |                                            |
+| `CMP r/m16, imm8`  | Compare sign-extended `imm8` with `r/m16`  |
+| `CMP r/m32, imm8`  | Compare sign-extended `imm8` with `r/m32`  |
+| `CMP r/m64, imm8`  | Compare sign-extended `imm8` with `r/m64`  |
+|                    |                                            |
+| `CMP r/m8, r8`     | Compare `r8` with `r/m8`                   |
+| `CMP r/m16, r16`   | Compare `r16` with `r/m16`                 |
+| `CMP r/m32, r32`   | Compare `r32` with `r/m32`                 |
+| `CMP r/m64, r64`   | Compare `r64` with `r/m64`                 |
+|                    |                                            |
+| `CMP r8, r/m8`     | Compare `r/m8` with `r8`                   |
+| `CMP r16, r/m16`   | Compare `r/m16` with `r16`                 |
+| `CMP r32, r/m32`   | Compare `r/m32` with `r32`                 |
+| `CMP r64, r/m64`   | Compare `r/m64` with `r64`                 |
 
-\* Not mentioned in the Intel Manual, could be wrong.
+Intuition:\
+Condition codes are read in order of the operands. For example:
+```x86asm
+cmp     rax, 10
+jg      .label
+```
+"jump if `RAX` is greater than `10`"
 
 ## Description
 Compares the first source operand with the second source operand and sets the status flags in the `EFLAGS` register according to the results. The comparison is performed by subtracting the second operand from the first operand and then setting the status flags in the same manner as the SUB instruction. When an immediate value is used as an operand, it is sign-extended to the length of the first operand.
