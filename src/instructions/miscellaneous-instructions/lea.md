@@ -19,7 +19,7 @@ Computes the effective address of the second operand (the source operand) and st
 
 Different assemblers may use different algorithms based on the size attribute and symbolic reference of the source operand.
 
-In 64-bit mode, the instruction’s destination operand is governed by operand size attribute, the default operand size is 32 bits. Address calculation is governed by address size attribute, the default address size is 64-bits. In 64-bit mode, address size of 16 bits is not encodable. See the table below.
+In 64-bit mode, the instruction's destination operand is governed by operand size attribute, the default operand size is 32 bits. Address calculation is governed by address size attribute, the default address size is 64-bits. In 64-bit mode, address size of 16 bits is not encodable. See the table below.
 
 | Operand Size | Address Size | Action Performed                                                                                                                                                               |
 | :----------- | :----------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
