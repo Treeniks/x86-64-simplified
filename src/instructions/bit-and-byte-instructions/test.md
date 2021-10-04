@@ -33,7 +33,7 @@ if TEMP == 0 {
     ZF = 0;
 }
 
-PF = BitwiseXNOR(TEMP[0:7]);
+PF = BitwiseXNOR(TEMP[0..=7]);
 CF = 0;
 OF = 0;
 // AF is undefined

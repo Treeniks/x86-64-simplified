@@ -54,8 +54,8 @@ In 64-bit mode, the instruction's default operation size is 32 bits. Use of the 
 ```rust,ignore
 TMP_XP = AL * SRC; // Signed multiplication
 // TMP-XP is a signed integer at twice the width of the SRC
-AX = TMP_XP[15:0];
-if SignExtend(TMP_XP[7:0]) == TMP_XP {
+AX = TMP_XP[0..=15];
+if SignExtend(TMP_XP[0..=7]) == TMP_XP {
     CF = 0;
     OF = 0;
 } else {
@@ -68,8 +68,8 @@ if SignExtend(TMP_XP[7:0]) == TMP_XP {
 ```rust,ignore
 TMP_XP = AX * SRC; // Signed multiplication
 // TMP_XP is a signed integer at twice the width of the SRC
-DX:AX = TMP_XP[31:0];
-if SignExtend(TMP_XP[15:0]) == TMP_XP {
+DX:AX = TMP_XP[0..=31];
+if SignExtend(TMP_XP[0..=15]) == TMP_XP {
     CF = 0;
     OF = 0;
 } else {
@@ -82,8 +82,8 @@ if SignExtend(TMP_XP[15:0]) == TMP_XP {
 ```rust,ignore
 TMP_XP = EAX * SRC; // Signed multiplication
 // TMP_XP is a signed integer at twice the width of the SRC
-EDX:EAX = TMP_XP[63:0];
-if SignExtend(TMP_XP[31:0]) == TMP_XP {
+EDX:EAX = TMP_XP[0..=63];
+if SignExtend(TMP_XP[0..=31]) == TMP_XP {
     CF = 0;
     OF = 0;
 } else {
@@ -96,8 +96,8 @@ if SignExtend(TMP_XP[31:0]) == TMP_XP {
 ```rust,ignore
 TMP_XP = RAX * SRC; // Signed multiplication
 // TMP_XP is a signed integer at twice the width of the SRC
-RDX:RAX = TMP_XP[127:0];
-if SignExtend(TMP_XP[63:0]) == TMP_XP {
+RDX:RAX = TMP_XP[0..=127];
+if SignExtend(TMP_XP[0..=63]) == TMP_XP {
     CF = 0;
     OF = 0;
 } else {

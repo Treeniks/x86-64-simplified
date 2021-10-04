@@ -215,21 +215,21 @@ if /* far call */ && (PE == 0 || (PE == 1 && VM == 1)) // real-address or virtua
         if /* stack not large enough for a 6-byte return address */ {
             ##SS(0);
         }
-        if /* DEST[31:16] is not zero */ {
+        if /* DEST[16..=31] is not zero */ {
             ##GP(0);
         }
         Push(CS); // padded with 16 high-order bits
         Push(EIP);
-        CS = DEST[47:32]; // DEST is ptr16:32 or [m16:32]
-        EIP = DEST[31:0]; // DEST is ptr16:32 or [m16:32]
+        CS = DEST[32..=47]; // DEST is ptr16:32 or [m16:32]
+        EIP = DEST[0..=31]; // DEST is ptr16:32 or [m16:32]
     } else { // OperandSize == 16
         if /* stack not large enough for a 4-byte return address */ {
             ##SS(0);
         }
         Push(CS);
         Push(IP);
-        CS = DEST[31:16]; // DEST is ptr16:16 or [m16:16]
-        EIP = DEST[15:0]; // DEST is ptr16:16 or [m16:16]; clear upper 16 bits
+        CS = DEST[16..=31]; // DEST is ptr16:16 or [m16:16]
+        EIP = DEST[0..=15]; // DEST is ptr16:16 or [m16:16]; clear upper 16 bits
     }
 }
 
@@ -566,7 +566,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
         if (SSP & ~0x1F) != ((SSP – 24) & ~0x1F) {
             ##GP(0);
         }
-        if (IA32_EFER.LMA and CS.L) == 0 && SSP[63:32] != 0 {
+        if (IA32_EFER.LMA and CS.L) == 0 && SSP[32..=63] != 0 {
             ##GP(0);
         }
         expected_token_value = SSP;

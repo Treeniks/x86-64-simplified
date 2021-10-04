@@ -210,7 +210,7 @@ if (PE == 1 && VM == 0 && IA32_EFER.LMA == 0) && instruction == far return {
             ##CP(FAR-RET/IRET);
         }
         // in legacy mode SSP must be in low 4GB
-        if prevSSP[63:32] != 0 {
+        if prevSSP[32..=63] != 0 {
             ##GP(0);
         }
         SSP = prevSSP;
@@ -306,7 +306,7 @@ if (PE == 1 && VM == 0 && IA32_EFER.LMA == 0) && instruction == far return {
         if CPL == 3 {
             tempSSP = IA32_PL3_SSP;
         }
-        if tempSSP[63:32] != 0 {
+        if tempSSP[32..=63] != 0 {
             ##GP(0);
         }
         SSP = tempSSP;
@@ -449,7 +449,7 @@ if (PE == 1 && VM == 0 && IA32_EFER.LMA == 0) && instruction == far return {
             // check if aligned to 4 bytes
             ##CP(FAR-RET/IRET);
         }
-        if (CS.L == 0 && tempSSP[63:32] != 0)
+        if (CS.L == 0 && tempSSP[32..=63] != 0)
                 || (CS.L == 1 && /* tempSSP is not canonical relative to the current paging mode */) {
             ##GP(0);
         }
@@ -582,7 +582,7 @@ if (PE == 1 && VM == 0 && IA32_EFER.LMA == 0) && instruction == far return {
         if CPL == 3 {
             tempSSP = IA32_PL3_SSP;
         }
-        if (CS.L == 0 && tempSSP[63:32] != 0)
+        if (CS.L == 0 && tempSSP[32..=63] != 0)
                 || (CS.L == 1 && /* tempSSP is not canonical relative to the current paging mode */) {
             ##GP(0);
         }
