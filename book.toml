@@ -1,5 +1,5 @@
 [book]
-title = "Assembler Cheatsheet"
+title = "x86-64 Simplified"
 author = "Thomas Lindae"
 language = "en"
 multilingual = false
@@ -11,7 +11,7 @@ use-default-preprocessors = false
 
 [output.html]
 default-theme = "ayu"
-git-repository-url = "https://github.com/Treeniks/asm-cheatsheet"
+git-repository-url = "https://github.com/Treeniks/x86-64-simplified"
 no-section-label = true
 
 [output.html.fold]
