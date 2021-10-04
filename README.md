@@ -51,3 +51,15 @@ From my personal experience using the Intel Manual, it is littered with inconsis
     - [`LEA`](src/instructions/miscellaneous-instructions/lea.md)
     - [`NOP`](src/instructions/miscellaneous-instructions/nop.md)
 - [System V ABI](src/system-v-abi.md)
+
+## Build
+To build and render this book yourself, you'll need [`mdbook`](https://github.com/rust-lang/mdBook) and the preprocessors [`mdbook-svgbob2`](https://github.com/Treeniks/mdbook-svgbob2) and [`mdbook-katex`](https://github.com/lzanini/mdbook-katex), which are best installed with `cargo`:
+```sh
+cargo install mdbook mdbook-svgbob2 mdbook-katex
+```
+<sup>If `mdbook-katex` fails to build on Windows, either use one of the pre-compiled releases or look at this issue: <https://github.com/lzanini/mdbook-katex/issues/15>.</sup>
+
+Then, navigate to the root of this repo and run:
+```sh
+mdbook build
+```
