@@ -164,11 +164,11 @@ if /* far jump */ && PE == 1 && VM == 0 {
         }
     }
     /* Depending on type and access rights: */
-        goto CONFORMING_CODE_SEGMENT;
-        goto NONCONFORMING_CODE_SEGMENT;
-        goto CALL_GATE;
-        goto TASK_GATE;
-        goto TASK_STATE_SEGMENT;
+        goto 'CONFORMING_CODE_SEGMENT;
+        goto 'NONCONFORMING_CODE_SEGMENT;
+        goto 'CALL_GATE;
+        goto 'TASK_GATE;
+        goto 'TASK_STATE_SEGMENT;
 } else {
     ##GP(segment selector);
 }
