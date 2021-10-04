@@ -260,7 +260,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
         goto 'TASK_STATE_SEGMENT;
 }
 
-'CONFORMING-CODE-SEGMENT {
+'CONFORMING_CODE_SEGMENT {
     if L-bit == 1 && D-bit == 1 && IA32_EFER.LMA == 1 {
         ##GP(new code segment selector);
     }
@@ -348,7 +348,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
     }
 }
 
-'NONCONFORMING-CODE-SEGMENT {
+'NONCONFORMING_CODE_SEGMENT {
     if L-Bit == 1 && D-BIT == 1 && IA32_EFER.LMA == 1 {
         ##GP(new code segment selector);
     }
@@ -432,7 +432,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
     }
 }
 
-'CALL-GATE {
+'CALL_GATE {
     if call gate (DPL < CPL) || (RPL > DPL) {
         ##GP(call-gate selector);
     }
