@@ -514,7 +514,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
         // segment descriptor information also loaded
         Push(oldSS:oldESP); // from calling procedure
         temp = /* parameter count from call gate, masked to 5 bits */;
-        Push(parameters from calling procedure’s stack, temp);
+        Push(parameters from calling procedure's stack, temp);
         Push(oldCS:oldEIP); // return address to calling procedure
     } else {
         if CallGateSize == 16 {
@@ -530,7 +530,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
             // segment descriptor information also loaded
             Push(oldSS:oldESP); // From calling procedure
             temp = /* parameter count from call gate, masked to 5 bits */;
-            Push(parameters from calling procedure’s stack, temp);
+            Push(parameters from calling procedure's stack, temp);
             Push(oldCS:oldEIP); // Return address to calling procedure
         } else { // CallGateSize == 64
             if /* pushing 32 bytes on the stack would use a non-canonical address */ {
@@ -550,7 +550,7 @@ if /* far call */ && (PE == 1 and VM == 0) // protected mode or IA-32e Mode, not
     if ShadowStackEnabled(CPL) && CPL == 3 {
         if IA32_EFER.LMA == 0 {
             IA32_PL3_SSP = SSP;
-        } else { // adjust so bits 63:N get the value of bit N–1, where N is the CPU’s maximum linear-address width
+        } else { // adjust so bits 63:N get the value of bit N–1, where N is the CPU's maximum linear-address width
         IA32_PL3_SSP = LA_adjust(SSP);
         }
     }
