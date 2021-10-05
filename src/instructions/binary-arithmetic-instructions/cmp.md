@@ -40,7 +40,7 @@ The condition codes used by the `Jcc`, `CMOVcc`, and `SETcc` instructions are ba
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of the `REX.R` prefix permits access to additional registers (`R8`-`R15`). Use of the `REX.W` prefix promotes operation to 64 bits. See the summary chart at the beginning of this section for encoding data and limits.
 
 ## Operation
-`SRC1`: first operand
+`SRC1`: first operand\
 `SRC2`: second operand
 ```rust,ignore
 temp = SRC1 - SignExtend(SRC2);
