@@ -10,10 +10,10 @@ Signed Divide
 
 $$
 \begin{aligned}
-\verb!AL! &= \frac{\verb!AX!}{\verb!r/m8!} & \verb!AH! &= \verb!AX! \mod \verb!r/m8! \\
-\verb!AX! &= \frac{\verb!DX:AX!}{\verb!r/m16!} & \verb!DX! &= \verb!DX:AX! \mod \verb!r/m16! \\
-\verb!EAX! &= \frac{\verb!EDX:EAX!}{\verb!r/m32!} & \verb!EDX! &= \verb!EDX:EAX! \mod \verb!r/m32! \\
-\verb!RAX! &= \frac{\verb!RDX:RAX!}{\verb!r/m64!} & \verb!RDX! &= \verb!RDX:RAX! \mod \verb!r/m64!
+\texttt{AL} &= \frac{\texttt{AX}}{\texttt{r/m8}} & \texttt{AH} &= \texttt{AX} \mod \texttt{r/m8} \\
+\texttt{AX} &= \frac{\texttt{DX:AX}}{\texttt{r/m16}} & \texttt{DX} &= \texttt{DX:AX} \mod \texttt{r/m16} \\
+\texttt{EAX} &= \frac{\texttt{EDX:EAX}}{\texttt{r/m32}} & \texttt{EDX} &= \texttt{EDX:EAX} \mod \texttt{r/m32} \\
+\texttt{RAX} &= \frac{\texttt{RDX:RAX}}{\texttt{r/m64}} & \texttt{RDX} &= \texttt{RDX:RAX} \mod \texttt{r/m64}
 \end{aligned}
 $$
 
