@@ -1,0 +1,656 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Registers - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="registers.html" class="active">Registers</a></li><li class="chapter-item expanded "><a href="flags.html">Flags</a></li><li class="chapter-item expanded "><a href="condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/imul.html">IMUL</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/idiv.html">IDIV</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item "><a href="instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item "><a href="instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item "><a href="instructions/control-transfer-instructions/jcc.html">Jcc</a></li><li class="chapter-item "><a href="instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item "><a href="instructions/control-transfer-instructions/ret.html">RET</a></li></ol></li><li class="chapter-item "><a href="instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="registers"><a class="header" href="#registers">Registers</a></h1>
+<h2 id="x86-64"><a class="header" href="#x86-64">x86-64</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">64-bit</th><th style="text-align: left">32-bit</th><th style="text-align: left">16-bit</th><th style="text-align: left">8-bit high</th><th style="text-align: left">8-bit low</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>rax</code></td><td style="text-align: left"><code>eax</code></td><td style="text-align: left"><code>ax</code></td><td style="text-align: left"><code>ah</code></td><td style="text-align: left"><code>al</code></td></tr>
+<tr><td style="text-align: left"><code>rbx</code></td><td style="text-align: left"><code>ebx</code></td><td style="text-align: left"><code>bx</code></td><td style="text-align: left"><code>bh</code></td><td style="text-align: left"><code>bl</code></td></tr>
+<tr><td style="text-align: left"><code>rcx</code></td><td style="text-align: left"><code>ecx</code></td><td style="text-align: left"><code>cx</code></td><td style="text-align: left"><code>ch</code></td><td style="text-align: left"><code>cl</code></td></tr>
+<tr><td style="text-align: left"><code>rdx</code></td><td style="text-align: left"><code>edx</code></td><td style="text-align: left"><code>dx</code></td><td style="text-align: left"><code>dh</code></td><td style="text-align: left"><code>dl</code></td></tr>
+<tr><td style="text-align: left"><code>rdi</code></td><td style="text-align: left"><code>edi</code></td><td style="text-align: left"><code>di</code></td><td style="text-align: left"></td><td style="text-align: left"><code>dil</code></td></tr>
+<tr><td style="text-align: left"><code>rsi</code></td><td style="text-align: left"><code>esi</code></td><td style="text-align: left"><code>si</code></td><td style="text-align: left"></td><td style="text-align: left"><code>sil</code></td></tr>
+<tr><td style="text-align: left"><code>rbp</code></td><td style="text-align: left"><code>ebp</code></td><td style="text-align: left"><code>bp</code></td><td style="text-align: left"></td><td style="text-align: left"><code>bpl</code></td></tr>
+<tr><td style="text-align: left"><code>rsp</code></td><td style="text-align: left"><code>esp</code></td><td style="text-align: left"><code>sp</code></td><td style="text-align: left"></td><td style="text-align: left"><code>spl</code></td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td><td style="text-align: left"></td><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>r8</code></td><td style="text-align: left"><code>r8d</code></td><td style="text-align: left"><code>r8w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r8b</code></td></tr>
+<tr><td style="text-align: left"><code>r9</code></td><td style="text-align: left"><code>r9d</code></td><td style="text-align: left"><code>r9w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r9b</code></td></tr>
+<tr><td style="text-align: left"><code>r10</code></td><td style="text-align: left"><code>r10d</code></td><td style="text-align: left"><code>r10w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r10b</code></td></tr>
+<tr><td style="text-align: left"><code>r11</code></td><td style="text-align: left"><code>r11d</code></td><td style="text-align: left"><code>r11w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r11b</code></td></tr>
+<tr><td style="text-align: left"><code>r12</code></td><td style="text-align: left"><code>r12d</code></td><td style="text-align: left"><code>r12w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r12b</code></td></tr>
+<tr><td style="text-align: left"><code>r13</code></td><td style="text-align: left"><code>r13d</code></td><td style="text-align: left"><code>r13w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r13b</code></td></tr>
+<tr><td style="text-align: left"><code>r14</code></td><td style="text-align: left"><code>r14d</code></td><td style="text-align: left"><code>r14w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r14b</code></td></tr>
+<tr><td style="text-align: left"><code>r15</code></td><td style="text-align: left"><code>r15d</code></td><td style="text-align: left"><code>r15w</code></td><td style="text-align: left"></td><td style="text-align: left"><code>r15b</code></td></tr>
+</tbody></table>
+</div><pre class="svgbob"><style>text{fill:var(--fg)}</style><svg xmlns="http://www.w3.org/2000/svg" width="672" height="1056">
+  <style>
+    line, path, circle, rect, polygon{stroke:var(--fg);stroke-width:2;stroke-opacity:1;fill-opacity:1;stroke-linecap:round;stroke-linejoin:miter;}text{font-family:Iosevka Fixed, monospace;font-size:14px;}rect.backdrop{stroke:none;fill:transparent;}.broken{stroke-dasharray:8;}.filled{fill:black;}.bg_filled{fill:transparent;}.nofill{fill:transparent;}.end_marked_arrow{marker-end:url(#arrow);}.start_marked_arrow{marker-start:url(#arrow);}.end_marked_diamond{marker-end:url(#diamond);}.start_marked_diamond{marker-start:url(#diamond);}.end_marked_circle{marker-end:url(#circle);}.start_marked_circle{marker-start:url(#circle);}.end_marked_open_circle{marker-end:url(#open_circle);}.start_marked_open_circle{marker-start:url(#open_circle);}.end_marked_big_open_circle{marker-end:url(#big_open_circle);}.start_marked_big_open_circle{marker-start:url(#big_open_circle);}
+    <!--separator-->
+    
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,0 0,4 4,2 0,0"></polygon>
+    </marker>
+    <marker id="diamond" viewBox="-2 -2 8 8" refX="4" refY="2" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <polygon points="0,2 2,0 4,2 2,4 0,2"></polygon>
+    </marker>
+    <marker id="circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="filled"></circle>
+    </marker>
+    <marker id="open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="2" class="bg_filled"></circle>
+    </marker>
+    <marker id="big_open_circle" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <circle cx="4" cy="4" r="3" class="bg_filled"></circle>
+    </marker>
+  </defs>
+  <rect class="backdrop" x="0" y="0" width="672" height="1056"></rect>
+  <text x="290" y="28" >8bit</text>
+  <text x="266" y="60" >16bit</text>
+  <text x="226" y="92" >32bit</text>
+  <text x="146" y="124" >64bit</text>
+  <text x="338" y="28" >Byte</text>
+  <text x="338" y="60" >Word</text>
+  <text x="338" y="92" >Doubleword</text>
+  <text x="338" y="124" >Quadword</text>
+  <text x="274" y="204" >ax</text>
+  <text x="258" y="236" >ah</text>
+  <text x="298" y="236" >al</text>
+  <text x="274" y="316" >bx</text>
+  <text x="258" y="348" >bh</text>
+  <text x="298" y="348" >bl</text>
+  <text x="274" y="428" >cx</text>
+  <text x="258" y="460" >ch</text>
+  <text x="298" y="460" >cl</text>
+  <text x="274" y="540" >dx</text>
+  <text x="258" y="572" >dh</text>
+  <text x="298" y="572" >dl</text>
+  <text x="290" y="684" >dil</text>
+  <text x="290" y="796" >sil</text>
+  <text x="290" y="908" >bpl</text>
+  <text x="290" y="1020" >spl</text>
+  <text x="586" y="220" >r8w</text>
+  <text x="626" y="236" >r8b</text>
+  <text x="586" y="332" >r9w</text>
+  <text x="626" y="348" >r9b</text>
+  <text x="586" y="444" >r10w</text>
+  <text x="626" y="460" >r10b</text>
+  <text x="586" y="556" >r11w</text>
+  <text x="626" y="572" >r11b</text>
+  <text x="586" y="668" >r12w</text>
+  <text x="626" y="684" >r12b</text>
+  <text x="586" y="780" >r13w</text>
+  <text x="626" y="796" >r13b</text>
+  <text x="586" y="892" >r14w</text>
+  <text x="626" y="908" >r14b</text>
+  <text x="586" y="1004" >r15w</text>
+  <text x="626" y="1020" >r15b</text>
+  <text x="74" y="204" >rax</text>
+  <text x="194" y="204" >eax</text>
+  <text x="410" y="204" >r8</text>
+  <text x="530" y="204" >r8d</text>
+  <text x="74" y="316" >rbx</text>
+  <text x="194" y="316" >ebx</text>
+  <text x="410" y="316" >r9</text>
+  <text x="530" y="316" >r9d</text>
+  <text x="74" y="428" >rcx</text>
+  <text x="194" y="428" >ecx</text>
+  <text x="410" y="428" >r10</text>
+  <text x="522" y="428" >r10d</text>
+  <text x="74" y="540" >rdx</text>
+  <text x="194" y="540" >edx</text>
+  <text x="410" y="540" >r11</text>
+  <text x="522" y="540" >r11d</text>
+  <text x="74" y="652" >rdi</text>
+  <text x="194" y="652" >edi</text>
+  <text x="410" y="652" >r12</text>
+  <text x="522" y="652" >r12d</text>
+  <text x="258" y="668" >di</text>
+  <text x="74" y="764" >rsi</text>
+  <text x="194" y="764" >esi</text>
+  <text x="410" y="764" >r13</text>
+  <text x="522" y="764" >r13d</text>
+  <text x="258" y="780" >si</text>
+  <text x="74" y="876" >rbp</text>
+  <text x="194" y="876" >ebp</text>
+  <text x="410" y="876" >r14</text>
+  <text x="522" y="876" >r14d</text>
+  <text x="258" y="892" >bp</text>
+  <text x="74" y="988" >rsp</text>
+  <text x="194" y="988" >esp</text>
+  <text x="410" y="988" >r15</text>
+  <text x="522" y="988" >r15d</text>
+  <text x="258" y="1004" >sp</text>
+  <g>
+    <path d="M 288,8 A 4,4 0,0,0 284,12" class="nofill"></path>
+    <line x1="284" y1="12" x2="284" y2="32" class="solid"></line>
+    <line x1="288" y1="8" x2="320" y2="8" class="solid"></line>
+    <path d="M 320,8 A 4,4 0,0,1 324,12" class="nofill"></path>
+    <line x1="324" y1="12" x2="324" y2="128" class="solid"></line>
+    <path d="M 248,40 A 4,4 0,0,0 244,44" class="nofill"></path>
+    <line x1="244" y1="44" x2="244" y2="64" class="solid"></line>
+    <line x1="248" y1="40" x2="324" y2="40" class="solid"></line>
+    <path d="M 168,72 A 4,4 0,0,0 164,76" class="nofill"></path>
+    <line x1="164" y1="76" x2="164" y2="96" class="solid"></line>
+    <line x1="168" y1="72" x2="324" y2="72" class="solid"></line>
+    <path d="M 8,104 A 4,4 0,0,0 4,108" class="nofill"></path>
+    <line x1="4" y1="108" x2="4" y2="128" class="solid"></line>
+    <line x1="8" y1="104" x2="324" y2="104" class="solid"></line>
+  </g>
+  <g>
+    <path d="M 8,152 A 4,4 0,0,0 4,156" class="nofill"></path>
+    <line x1="4" y1="156" x2="4" y2="244" class="solid"></line>
+    <line x1="8" y1="152" x2="320" y2="152" class="solid"></line>
+    <path d="M 320,152 A 4,4 0,0,1 324,156" class="nofill"></path>
+    <line x1="324" y1="156" x2="324" y2="244" class="solid"></line>
+    <path d="M 4,244 A 4,4 0,0,0 8,248" class="nofill"></path>
+    <path d="M 168,168 A 4,4 0,0,0 164,172" class="nofill"></path>
+    <line x1="164" y1="172" x2="164" y2="248" class="solid"></line>
+    <line x1="168" y1="168" x2="324" y2="168" class="solid"></line>
+    <path d="M 248,184 A 4,4 0,0,0 244,188" class="nofill"></path>
+    <line x1="244" y1="188" x2="244" y2="248" class="solid"></line>
+    <line x1="248" y1="184" x2="324" y2="184" class="solid"></line>
+    <line x1="244" y1="216" x2="324" y2="216" class="solid"></line>
+    <line x1="284" y1="216" x2="284" y2="248" class="solid"></line>
+    <line x1="8" y1="248" x2="320" y2="248" class="solid"></line>
+    <path d="M 324,244 A 4,4 0,0,1 320,248" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,264 A 4,4 0,0,0 4,268" class="nofill"></path>
+    <line x1="4" y1="268" x2="4" y2="356" class="solid"></line>
+    <line x1="8" y1="264" x2="320" y2="264" class="solid"></line>
+    <path d="M 320,264 A 4,4 0,0,1 324,268" class="nofill"></path>
+    <line x1="324" y1="268" x2="324" y2="356" class="solid"></line>
+    <path d="M 4,356 A 4,4 0,0,0 8,360" class="nofill"></path>
+    <path d="M 168,280 A 4,4 0,0,0 164,284" class="nofill"></path>
+    <line x1="164" y1="284" x2="164" y2="360" class="solid"></line>
+    <line x1="168" y1="280" x2="324" y2="280" class="solid"></line>
+    <path d="M 248,296 A 4,4 0,0,0 244,300" class="nofill"></path>
+    <line x1="244" y1="300" x2="244" y2="360" class="solid"></line>
+    <line x1="248" y1="296" x2="324" y2="296" class="solid"></line>
+    <line x1="244" y1="328" x2="324" y2="328" class="solid"></line>
+    <line x1="284" y1="328" x2="284" y2="360" class="solid"></line>
+    <line x1="8" y1="360" x2="320" y2="360" class="solid"></line>
+    <path d="M 324,356 A 4,4 0,0,1 320,360" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,376 A 4,4 0,0,0 4,380" class="nofill"></path>
+    <line x1="4" y1="380" x2="4" y2="468" class="solid"></line>
+    <line x1="8" y1="376" x2="320" y2="376" class="solid"></line>
+    <path d="M 320,376 A 4,4 0,0,1 324,380" class="nofill"></path>
+    <line x1="324" y1="380" x2="324" y2="468" class="solid"></line>
+    <path d="M 4,468 A 4,4 0,0,0 8,472" class="nofill"></path>
+    <path d="M 168,392 A 4,4 0,0,0 164,396" class="nofill"></path>
+    <line x1="164" y1="396" x2="164" y2="472" class="solid"></line>
+    <line x1="168" y1="392" x2="324" y2="392" class="solid"></line>
+    <path d="M 248,408 A 4,4 0,0,0 244,412" class="nofill"></path>
+    <line x1="244" y1="412" x2="244" y2="472" class="solid"></line>
+    <line x1="248" y1="408" x2="324" y2="408" class="solid"></line>
+    <line x1="244" y1="440" x2="324" y2="440" class="solid"></line>
+    <line x1="284" y1="440" x2="284" y2="472" class="solid"></line>
+    <line x1="8" y1="472" x2="320" y2="472" class="solid"></line>
+    <path d="M 324,468 A 4,4 0,0,1 320,472" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,488 A 4,4 0,0,0 4,492" class="nofill"></path>
+    <line x1="4" y1="492" x2="4" y2="580" class="solid"></line>
+    <line x1="8" y1="488" x2="320" y2="488" class="solid"></line>
+    <path d="M 320,488 A 4,4 0,0,1 324,492" class="nofill"></path>
+    <line x1="324" y1="492" x2="324" y2="580" class="solid"></line>
+    <path d="M 4,580 A 4,4 0,0,0 8,584" class="nofill"></path>
+    <path d="M 168,504 A 4,4 0,0,0 164,508" class="nofill"></path>
+    <line x1="164" y1="508" x2="164" y2="584" class="solid"></line>
+    <line x1="168" y1="504" x2="324" y2="504" class="solid"></line>
+    <path d="M 248,520 A 4,4 0,0,0 244,524" class="nofill"></path>
+    <line x1="244" y1="524" x2="244" y2="584" class="solid"></line>
+    <line x1="248" y1="520" x2="324" y2="520" class="solid"></line>
+    <line x1="244" y1="552" x2="324" y2="552" class="solid"></line>
+    <line x1="284" y1="552" x2="284" y2="584" class="solid"></line>
+    <line x1="8" y1="584" x2="320" y2="584" class="solid"></line>
+    <path d="M 324,580 A 4,4 0,0,1 320,584" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,600 A 4,4 0,0,0 4,604" class="nofill"></path>
+    <line x1="4" y1="604" x2="4" y2="692" class="solid"></line>
+    <line x1="8" y1="600" x2="320" y2="600" class="solid"></line>
+    <path d="M 320,600 A 4,4 0,0,1 324,604" class="nofill"></path>
+    <line x1="324" y1="604" x2="324" y2="692" class="solid"></line>
+    <path d="M 4,692 A 4,4 0,0,0 8,696" class="nofill"></path>
+    <path d="M 168,616 A 4,4 0,0,0 164,620" class="nofill"></path>
+    <line x1="164" y1="620" x2="164" y2="696" class="solid"></line>
+    <line x1="168" y1="616" x2="324" y2="616" class="solid"></line>
+    <path d="M 248,632 A 4,4 0,0,0 244,636" class="nofill"></path>
+    <line x1="244" y1="636" x2="244" y2="696" class="solid"></line>
+    <line x1="248" y1="632" x2="324" y2="632" class="solid"></line>
+    <path d="M 288,664 A 4,4 0,0,0 284,668" class="nofill"></path>
+    <line x1="284" y1="668" x2="284" y2="696" class="solid"></line>
+    <line x1="288" y1="664" x2="324" y2="664" class="solid"></line>
+    <line x1="8" y1="696" x2="320" y2="696" class="solid"></line>
+    <path d="M 324,692 A 4,4 0,0,1 320,696" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,712 A 4,4 0,0,0 4,716" class="nofill"></path>
+    <line x1="4" y1="716" x2="4" y2="804" class="solid"></line>
+    <line x1="8" y1="712" x2="320" y2="712" class="solid"></line>
+    <path d="M 320,712 A 4,4 0,0,1 324,716" class="nofill"></path>
+    <line x1="324" y1="716" x2="324" y2="804" class="solid"></line>
+    <path d="M 4,804 A 4,4 0,0,0 8,808" class="nofill"></path>
+    <path d="M 168,728 A 4,4 0,0,0 164,732" class="nofill"></path>
+    <line x1="164" y1="732" x2="164" y2="808" class="solid"></line>
+    <line x1="168" y1="728" x2="324" y2="728" class="solid"></line>
+    <path d="M 248,744 A 4,4 0,0,0 244,748" class="nofill"></path>
+    <line x1="244" y1="748" x2="244" y2="808" class="solid"></line>
+    <line x1="248" y1="744" x2="324" y2="744" class="solid"></line>
+    <path d="M 288,776 A 4,4 0,0,0 284,780" class="nofill"></path>
+    <line x1="284" y1="780" x2="284" y2="808" class="solid"></line>
+    <line x1="288" y1="776" x2="324" y2="776" class="solid"></line>
+    <line x1="8" y1="808" x2="320" y2="808" class="solid"></line>
+    <path d="M 324,804 A 4,4 0,0,1 320,808" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,824 A 4,4 0,0,0 4,828" class="nofill"></path>
+    <line x1="4" y1="828" x2="4" y2="916" class="solid"></line>
+    <line x1="8" y1="824" x2="320" y2="824" class="solid"></line>
+    <path d="M 320,824 A 4,4 0,0,1 324,828" class="nofill"></path>
+    <line x1="324" y1="828" x2="324" y2="916" class="solid"></line>
+    <path d="M 4,916 A 4,4 0,0,0 8,920" class="nofill"></path>
+    <path d="M 168,840 A 4,4 0,0,0 164,844" class="nofill"></path>
+    <line x1="164" y1="844" x2="164" y2="920" class="solid"></line>
+    <line x1="168" y1="840" x2="324" y2="840" class="solid"></line>
+    <path d="M 248,856 A 4,4 0,0,0 244,860" class="nofill"></path>
+    <line x1="244" y1="860" x2="244" y2="920" class="solid"></line>
+    <line x1="248" y1="856" x2="324" y2="856" class="solid"></line>
+    <path d="M 288,888 A 4,4 0,0,0 284,892" class="nofill"></path>
+    <line x1="284" y1="892" x2="284" y2="920" class="solid"></line>
+    <line x1="288" y1="888" x2="324" y2="888" class="solid"></line>
+    <line x1="8" y1="920" x2="320" y2="920" class="solid"></line>
+    <path d="M 324,916 A 4,4 0,0,1 320,920" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 8,936 A 4,4 0,0,0 4,940" class="nofill"></path>
+    <line x1="4" y1="940" x2="4" y2="1028" class="solid"></line>
+    <line x1="8" y1="936" x2="320" y2="936" class="solid"></line>
+    <path d="M 320,936 A 4,4 0,0,1 324,940" class="nofill"></path>
+    <line x1="324" y1="940" x2="324" y2="1028" class="solid"></line>
+    <path d="M 4,1028 A 4,4 0,0,0 8,1032" class="nofill"></path>
+    <path d="M 168,952 A 4,4 0,0,0 164,956" class="nofill"></path>
+    <line x1="164" y1="956" x2="164" y2="1032" class="solid"></line>
+    <line x1="168" y1="952" x2="324" y2="952" class="solid"></line>
+    <path d="M 248,968 A 4,4 0,0,0 244,972" class="nofill"></path>
+    <line x1="244" y1="972" x2="244" y2="1032" class="solid"></line>
+    <line x1="248" y1="968" x2="324" y2="968" class="solid"></line>
+    <path d="M 288,1000 A 4,4 0,0,0 284,1004" class="nofill"></path>
+    <line x1="284" y1="1004" x2="284" y2="1032" class="solid"></line>
+    <line x1="288" y1="1000" x2="324" y2="1000" class="solid"></line>
+    <line x1="8" y1="1032" x2="320" y2="1032" class="solid"></line>
+    <path d="M 324,1028 A 4,4 0,0,1 320,1032" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,152 A 4,4 0,0,0 340,156" class="nofill"></path>
+    <line x1="340" y1="156" x2="340" y2="244" class="solid"></line>
+    <line x1="344" y1="152" x2="656" y2="152" class="solid"></line>
+    <path d="M 656,152 A 4,4 0,0,1 660,156" class="nofill"></path>
+    <line x1="660" y1="156" x2="660" y2="244" class="solid"></line>
+    <path d="M 340,244 A 4,4 0,0,0 344,248" class="nofill"></path>
+    <path d="M 504,168 A 4,4 0,0,0 500,172" class="nofill"></path>
+    <line x1="500" y1="172" x2="500" y2="248" class="solid"></line>
+    <line x1="504" y1="168" x2="660" y2="168" class="solid"></line>
+    <path d="M 584,184 A 4,4 0,0,0 580,188" class="nofill"></path>
+    <line x1="580" y1="188" x2="580" y2="248" class="solid"></line>
+    <line x1="584" y1="184" x2="660" y2="184" class="solid"></line>
+    <path d="M 624,216 A 4,4 0,0,0 620,220" class="nofill"></path>
+    <line x1="620" y1="220" x2="620" y2="248" class="solid"></line>
+    <line x1="624" y1="216" x2="660" y2="216" class="solid"></line>
+    <line x1="344" y1="248" x2="656" y2="248" class="solid"></line>
+    <path d="M 660,244 A 4,4 0,0,1 656,248" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,264 A 4,4 0,0,0 340,268" class="nofill"></path>
+    <line x1="340" y1="268" x2="340" y2="356" class="solid"></line>
+    <line x1="344" y1="264" x2="656" y2="264" class="solid"></line>
+    <path d="M 656,264 A 4,4 0,0,1 660,268" class="nofill"></path>
+    <line x1="660" y1="268" x2="660" y2="356" class="solid"></line>
+    <path d="M 340,356 A 4,4 0,0,0 344,360" class="nofill"></path>
+    <path d="M 504,280 A 4,4 0,0,0 500,284" class="nofill"></path>
+    <line x1="500" y1="284" x2="500" y2="360" class="solid"></line>
+    <line x1="504" y1="280" x2="660" y2="280" class="solid"></line>
+    <path d="M 584,296 A 4,4 0,0,0 580,300" class="nofill"></path>
+    <line x1="580" y1="300" x2="580" y2="360" class="solid"></line>
+    <line x1="584" y1="296" x2="660" y2="296" class="solid"></line>
+    <path d="M 624,328 A 4,4 0,0,0 620,332" class="nofill"></path>
+    <line x1="620" y1="332" x2="620" y2="360" class="solid"></line>
+    <line x1="624" y1="328" x2="660" y2="328" class="solid"></line>
+    <line x1="344" y1="360" x2="656" y2="360" class="solid"></line>
+    <path d="M 660,356 A 4,4 0,0,1 656,360" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,376 A 4,4 0,0,0 340,380" class="nofill"></path>
+    <line x1="340" y1="380" x2="340" y2="468" class="solid"></line>
+    <line x1="344" y1="376" x2="656" y2="376" class="solid"></line>
+    <path d="M 656,376 A 4,4 0,0,1 660,380" class="nofill"></path>
+    <line x1="660" y1="380" x2="660" y2="468" class="solid"></line>
+    <path d="M 340,468 A 4,4 0,0,0 344,472" class="nofill"></path>
+    <path d="M 504,392 A 4,4 0,0,0 500,396" class="nofill"></path>
+    <line x1="500" y1="396" x2="500" y2="472" class="solid"></line>
+    <line x1="504" y1="392" x2="660" y2="392" class="solid"></line>
+    <path d="M 584,408 A 4,4 0,0,0 580,412" class="nofill"></path>
+    <line x1="580" y1="412" x2="580" y2="472" class="solid"></line>
+    <line x1="584" y1="408" x2="660" y2="408" class="solid"></line>
+    <path d="M 624,440 A 4,4 0,0,0 620,444" class="nofill"></path>
+    <line x1="620" y1="444" x2="620" y2="472" class="solid"></line>
+    <line x1="624" y1="440" x2="660" y2="440" class="solid"></line>
+    <line x1="344" y1="472" x2="656" y2="472" class="solid"></line>
+    <path d="M 660,468 A 4,4 0,0,1 656,472" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,488 A 4,4 0,0,0 340,492" class="nofill"></path>
+    <line x1="340" y1="492" x2="340" y2="580" class="solid"></line>
+    <line x1="344" y1="488" x2="656" y2="488" class="solid"></line>
+    <path d="M 656,488 A 4,4 0,0,1 660,492" class="nofill"></path>
+    <line x1="660" y1="492" x2="660" y2="580" class="solid"></line>
+    <path d="M 340,580 A 4,4 0,0,0 344,584" class="nofill"></path>
+    <path d="M 504,504 A 4,4 0,0,0 500,508" class="nofill"></path>
+    <line x1="500" y1="508" x2="500" y2="584" class="solid"></line>
+    <line x1="504" y1="504" x2="660" y2="504" class="solid"></line>
+    <path d="M 584,520 A 4,4 0,0,0 580,524" class="nofill"></path>
+    <line x1="580" y1="524" x2="580" y2="584" class="solid"></line>
+    <line x1="584" y1="520" x2="660" y2="520" class="solid"></line>
+    <path d="M 624,552 A 4,4 0,0,0 620,556" class="nofill"></path>
+    <line x1="620" y1="556" x2="620" y2="584" class="solid"></line>
+    <line x1="624" y1="552" x2="660" y2="552" class="solid"></line>
+    <line x1="344" y1="584" x2="656" y2="584" class="solid"></line>
+    <path d="M 660,580 A 4,4 0,0,1 656,584" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,600 A 4,4 0,0,0 340,604" class="nofill"></path>
+    <line x1="340" y1="604" x2="340" y2="692" class="solid"></line>
+    <line x1="344" y1="600" x2="656" y2="600" class="solid"></line>
+    <path d="M 656,600 A 4,4 0,0,1 660,604" class="nofill"></path>
+    <line x1="660" y1="604" x2="660" y2="692" class="solid"></line>
+    <path d="M 340,692 A 4,4 0,0,0 344,696" class="nofill"></path>
+    <path d="M 504,616 A 4,4 0,0,0 500,620" class="nofill"></path>
+    <line x1="500" y1="620" x2="500" y2="696" class="solid"></line>
+    <line x1="504" y1="616" x2="660" y2="616" class="solid"></line>
+    <path d="M 584,632 A 4,4 0,0,0 580,636" class="nofill"></path>
+    <line x1="580" y1="636" x2="580" y2="696" class="solid"></line>
+    <line x1="584" y1="632" x2="660" y2="632" class="solid"></line>
+    <path d="M 624,664 A 4,4 0,0,0 620,668" class="nofill"></path>
+    <line x1="620" y1="668" x2="620" y2="696" class="solid"></line>
+    <line x1="624" y1="664" x2="660" y2="664" class="solid"></line>
+    <line x1="344" y1="696" x2="656" y2="696" class="solid"></line>
+    <path d="M 660,692 A 4,4 0,0,1 656,696" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,712 A 4,4 0,0,0 340,716" class="nofill"></path>
+    <line x1="340" y1="716" x2="340" y2="804" class="solid"></line>
+    <line x1="344" y1="712" x2="656" y2="712" class="solid"></line>
+    <path d="M 656,712 A 4,4 0,0,1 660,716" class="nofill"></path>
+    <line x1="660" y1="716" x2="660" y2="804" class="solid"></line>
+    <path d="M 340,804 A 4,4 0,0,0 344,808" class="nofill"></path>
+    <path d="M 504,728 A 4,4 0,0,0 500,732" class="nofill"></path>
+    <line x1="500" y1="732" x2="500" y2="808" class="solid"></line>
+    <line x1="504" y1="728" x2="660" y2="728" class="solid"></line>
+    <path d="M 584,744 A 4,4 0,0,0 580,748" class="nofill"></path>
+    <line x1="580" y1="748" x2="580" y2="808" class="solid"></line>
+    <line x1="584" y1="744" x2="660" y2="744" class="solid"></line>
+    <path d="M 624,776 A 4,4 0,0,0 620,780" class="nofill"></path>
+    <line x1="620" y1="780" x2="620" y2="808" class="solid"></line>
+    <line x1="624" y1="776" x2="660" y2="776" class="solid"></line>
+    <line x1="344" y1="808" x2="656" y2="808" class="solid"></line>
+    <path d="M 660,804 A 4,4 0,0,1 656,808" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,824 A 4,4 0,0,0 340,828" class="nofill"></path>
+    <line x1="340" y1="828" x2="340" y2="916" class="solid"></line>
+    <line x1="344" y1="824" x2="656" y2="824" class="solid"></line>
+    <path d="M 656,824 A 4,4 0,0,1 660,828" class="nofill"></path>
+    <line x1="660" y1="828" x2="660" y2="916" class="solid"></line>
+    <path d="M 340,916 A 4,4 0,0,0 344,920" class="nofill"></path>
+    <path d="M 504,840 A 4,4 0,0,0 500,844" class="nofill"></path>
+    <line x1="500" y1="844" x2="500" y2="920" class="solid"></line>
+    <line x1="504" y1="840" x2="660" y2="840" class="solid"></line>
+    <path d="M 584,856 A 4,4 0,0,0 580,860" class="nofill"></path>
+    <line x1="580" y1="860" x2="580" y2="920" class="solid"></line>
+    <line x1="584" y1="856" x2="660" y2="856" class="solid"></line>
+    <path d="M 624,888 A 4,4 0,0,0 620,892" class="nofill"></path>
+    <line x1="620" y1="892" x2="620" y2="920" class="solid"></line>
+    <line x1="624" y1="888" x2="660" y2="888" class="solid"></line>
+    <line x1="344" y1="920" x2="656" y2="920" class="solid"></line>
+    <path d="M 660,916 A 4,4 0,0,1 656,920" class="nofill"></path>
+  </g>
+  <g>
+    <path d="M 344,936 A 4,4 0,0,0 340,940" class="nofill"></path>
+    <line x1="340" y1="940" x2="340" y2="1028" class="solid"></line>
+    <line x1="344" y1="936" x2="656" y2="936" class="solid"></line>
+    <path d="M 656,936 A 4,4 0,0,1 660,940" class="nofill"></path>
+    <line x1="660" y1="940" x2="660" y2="1028" class="solid"></line>
+    <path d="M 340,1028 A 4,4 0,0,0 344,1032" class="nofill"></path>
+    <path d="M 504,952 A 4,4 0,0,0 500,956" class="nofill"></path>
+    <line x1="500" y1="956" x2="500" y2="1032" class="solid"></line>
+    <line x1="504" y1="952" x2="660" y2="952" class="solid"></line>
+    <path d="M 584,968 A 4,4 0,0,0 580,972" class="nofill"></path>
+    <line x1="580" y1="972" x2="580" y2="1032" class="solid"></line>
+    <line x1="584" y1="968" x2="660" y2="968" class="solid"></line>
+    <path d="M 624,1000 A 4,4 0,0,0 620,1004" class="nofill"></path>
+    <line x1="620" y1="1004" x2="620" y2="1032" class="solid"></line>
+    <line x1="624" y1="1000" x2="660" y2="1000" class="solid"></line>
+    <line x1="344" y1="1032" x2="656" y2="1032" class="solid"></line>
+    <path d="M 660,1028 A 4,4 0,0,1 656,1032" class="nofill"></path>
+  </g>
+</svg></pre>
+<h2 id="sse"><a class="header" href="#sse">SSE</a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">128-bit</th></tr></thead><tbody>
+<tr><td style="text-align: center"><code>xmm0</code></td></tr>
+<tr><td style="text-align: center"><code>xmm1</code></td></tr>
+<tr><td style="text-align: center"><code>xmm2</code></td></tr>
+<tr><td style="text-align: center"><code>xmm3</code></td></tr>
+<tr><td style="text-align: center"><code>xmm4</code></td></tr>
+<tr><td style="text-align: center"><code>xmm5</code></td></tr>
+<tr><td style="text-align: center"><code>xmm6</code></td></tr>
+<tr><td style="text-align: center"><code>xmm7</code></td></tr>
+<tr><td style="text-align: center"><code>xmm8</code></td></tr>
+<tr><td style="text-align: center"><code>xmm9</code></td></tr>
+<tr><td style="text-align: center"><code>xmm10</code></td></tr>
+<tr><td style="text-align: center"><code>xmm11</code></td></tr>
+<tr><td style="text-align: center"><code>xmm12</code></td></tr>
+<tr><td style="text-align: center"><code>xmm13</code></td></tr>
+<tr><td style="text-align: center"><code>xmm14</code></td></tr>
+<tr><td style="text-align: center"><code>xmm15</code></td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="prefix.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="flags.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="prefix.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="flags.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SAL|SAR|SHL|SHR - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../registers.html">Registers</a></li><li class="chapter-item expanded "><a href="../../flags.html">Flags</a></li><li class="chapter-item expanded "><a href="../../condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="../../instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/imul.html">IMUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/idiv.html">IDIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item expanded "><a href="../../instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html" class="active">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jcc.html">Jcc</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/ret.html">RET</a></li></ol></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="salsarshlshr"><a class="header" href="#salsarshlshr"><code>SAL</code>|<code>SAR</code>|<code>SHL</code>|<code>SHR</code></a></h1>
+<p>Shift</p>
+<p><code>SAL</code>: Shift Arithmetic Left<br />
+<code>SAR</code>: Shift Arithmetic Right</p>
+<p><code>SHL</code>: Shift Logical Left<br />
+<code>SHR</code>: Shift Logical Right</p>
+<p>Right Arithmetic Shifts preserve the sign by filling with the same value as the sign bit.<br />
+Right Logical Shift always fill with 0s.</p>
+<p>Left Shifts always fill with 0s, thus <code>SAL</code> and <code>SHL</code> are synonymous.</p>
+<h2 id="salshl"><a class="header" href="#salshl"><code>SAL</code>|<code>SHL</code></a></h2>
+<p><code>SAL</code> and <code>SHL</code> are synonymous.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>SAL/SHL r/m8, imm8</code></td><td style="text-align: left">Shift <code>r/m8</code> to the left, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m16, imm8</code></td><td style="text-align: left">Shift <code>r/m16</code> to the left, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m32, imm8</code></td><td style="text-align: left">Shift <code>r/m32</code> to the left, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m64, imm8</code></td><td style="text-align: left">Shift <code>r/m64</code> to the left, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m8, CL</code></td><td style="text-align: left">Shift <code>r/m8</code> to the left, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m16, CL</code></td><td style="text-align: left">Shift <code>r/m16</code> to the left, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m32, CL</code></td><td style="text-align: left">Shift <code>r/m32</code> to the left, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SAL/SHL r/m64, CL</code></td><td style="text-align: left">Shift <code>r/m64</code> to the left, <code>CL</code> times, filling with 0</td></tr>
+</tbody></table>
+</div>
+<h2 id="sar"><a class="header" href="#sar"><code>SAR</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>SAR r/m8, imm8</code></td><td style="text-align: left">Shift <code>r/m8</code> to the right, <code>imm8</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m16, imm8</code></td><td style="text-align: left">Shift <code>r/m16</code> to the right, <code>imm8</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m32, imm8</code></td><td style="text-align: left">Shift <code>r/m32</code> to the right, <code>imm8</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m64, imm8</code></td><td style="text-align: left">Shift <code>r/m64</code> to the right, <code>imm8</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>SAR r/m8, CL</code></td><td style="text-align: left">Shift <code>r/m8</code> to the right, <code>CL</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m16, CL</code></td><td style="text-align: left">Shift <code>r/m16</code> to the right, <code>CL</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m32, CL</code></td><td style="text-align: left">Shift <code>r/m32</code> to the right, <code>CL</code> times, preserving the sign</td></tr>
+<tr><td style="text-align: left"><code>SAR r/m64, CL</code></td><td style="text-align: left">Shift <code>r/m64</code> to the right, <code>CL</code> times, preserving the sign</td></tr>
+</tbody></table>
+</div>
+<h2 id="shr"><a class="header" href="#shr"><code>SHR</code></a></h2>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>SHR r/m8, imm8</code></td><td style="text-align: left">Shift <code>r/m8</code> to the right, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m16, imm8</code></td><td style="text-align: left">Shift <code>r/m16</code> to the right, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m32, imm8</code></td><td style="text-align: left">Shift <code>r/m32</code> to the right, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m64, imm8</code></td><td style="text-align: left">Shift <code>r/m64</code> to the right, <code>imm8</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>SHR r/m8, CL</code></td><td style="text-align: left">Shift <code>r/m8</code> to the right, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m16, CL</code></td><td style="text-align: left">Shift <code>r/m16</code> to the right, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m32, CL</code></td><td style="text-align: left">Shift <code>r/m32</code> to the right, <code>CL</code> times, filling with 0</td></tr>
+<tr><td style="text-align: left"><code>SHR r/m64, CL</code></td><td style="text-align: left">Shift <code>r/m64</code> to the right, <code>CL</code> times, filling with 0</td></tr>
+</tbody></table>
+</div>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Shifts the bits in the first operand (destination operand) to the left or right by the number of bits specified in the second operand (count operand). Bits shifted beyond the destination operand boundary are first shifted into the <code>CF</code> flag, then discarded. At the end of the shift operation, the <code>CF</code> flag contains the last bit shifted out of the destination operand.</p>
+<p>The destination operand can be a register or a memory location. The count operand can be an immediate value or the <code>CL</code> register. The count is masked to 5 bits (or 6 bits if in 64-bit mode and <code>REX.W</code> is used). The count range is limited to 0 to 31 (or 63 if 64-bit mode and <code>REX.W</code> is used). A special opcode encoding is provided for a count of 1.</p>
+<p>The shift arithmetic left (<code>SAL</code>) and shift logical left (<code>SHL</code>) instructions perform the same operation; they shift the bits in the destination operand to the left (toward more significant bit locations). For each shift count, the most significant bit of the destination operand is shifted into the <code>CF</code> flag, and the least significant bit is cleared (see Figure 7-7 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1).</p>
+<p>The shift arithmetic right (<code>SAR</code>) and shift logical right (<code>SHR</code>) instructions shift the bits of the destination operand to the right (toward less significant bit locations). For each shift count, the least significant bit of the destination operand is shifted into the <code>CF</code> flag, and the most significant bit is either set or cleared depending on the instruction type. The <code>SHR</code> instruction clears the most significant bit (see Figure 7-8 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1); the <code>SAR</code> instruction sets or clears the most significant bit to correspond to the sign (most significant bit) of the original value in the destination operand. In effect, the <code>SAR</code> instruction fills the empty bit position’s shifted value with the sign of the unshifted value (see Figure 7-9 in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1).</p>
+<p>The <code>SAR</code> and <code>SHR</code> instructions can be used to perform signed or unsigned division, respectively, of the destination operand by powers of 2. For example, using the <code>SAR</code> instruction to shift a signed integer 1 bit to the right divides the value by 2.</p>
+<p>Using the <code>SAR</code> instruction to perform a division operation does not produce the same result as the <code>IDIV</code> instruction. The quotient from the <code>IDIV</code> instruction is rounded toward zero, whereas the “quotient” of the <code>SAR</code> instruction is rounded toward negative infinity. This difference is apparent only for negative numbers. For example, when the <code>IDIV</code> instruction is used to divide -9 by 4, the result is -2 with a remainder of -1. If the <code>SAR</code> instruction is used to shift -9 right by two bits, the result is -3 and the “remainder” is +3; however, the <code>SAR</code> instruction stores only the most significant bit of the remainder (in the <code>CF</code> flag).</p>
+<p>The <code>OF</code> flag is affected only on 1-bit shifts. For left shifts, the <code>OF</code> flag is set to 0 if the most-significant bit of the result is the same as the <code>CF</code> flag (that is, the top two bits of the original operand were the same); otherwise, it is set to 1. For the <code>SAR</code> instruction, the <code>OF</code> flag is cleared for all 1-bit shifts. For the <code>SHR</code> instruction, the <code>OF</code> flag is set to the most-significant bit of the original operand.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits and the mask width for <code>CL</code> is 5 bits. Using a <code>REX</code> prefix in the form of <code>REX.R</code> permits access to additional registers (<code>R8</code>-<code>R15</code>). Using a <code>REX</code> prefix in the form of <code>REX.W</code> promotes operation to 64-bits and sets the mask width for <code>CL</code> to 6 bits. See the summary chart at the beginning of this section for encoding data and limits.</p>
+<h2 id="operation"><a class="header" href="#operation">Operation</a></h2>
+<p><code>DEST</code>: first operand<br />
+<code>COUNT</code>: second operand<br />
+<code>countMASK</code>: <code>0b00111111</code> (= 63) for 64-bit operations, <code>0b00011111</code> (= 31) otherwise</p>
+<h3 id="salshl-1"><a class="header" href="#salshl-1"><code>SAL</code>|<code>SHL</code></a></h3>
+<pre><code class="language-rust ignore">tempCOUNT = COUNT &amp; countMASK;
+while tempCOUNT != 0 {
+    CF = MSB(DEST);
+    DEST = DEST * 2;
+    tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT &amp; countMASK == 1 {
+    OF = MSB(DEST) ^ CF;
+} else if COUNT &amp; countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
+}
+</code></pre>
+<h3 id="sar-1"><a class="header" href="#sar-1"><code>SAR</code></a></h3>
+<pre><code class="language-rust ignore">tempCOUNT = COUNT &amp; countMASK;
+while tempCOUNT != 0 {
+    CF = LSB(DEST);
+    DEST = DEST / 2; // signed divide, rounding toward negative infinity
+    tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT &amp; countMASK == 1 {
+    OF = 0;
+} else if COUNT &amp; countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
+}
+</code></pre>
+<h3 id="shr-1"><a class="header" href="#shr-1"><code>SHR</code></a></h3>
+<pre><code class="language-rust ignore">tempCOUNT = COUNT &amp; countMASK;
+while tempCOUNT != 0 {
+    CF = LSB(DEST);
+    DEST = DEST / 2; // unsigned divide
+    tempCOUNT = tempCOUNT - 1;
+}
+
+// determine overflow
+if COUNT &amp; countMASK == 1 {
+    OF = MSB(tempDEST);
+} else if COUNT &amp; countMASK == 0 {
+    // all flags unchanged
+} else {
+    // COUNT not 1 or 0
+    // OF undefined
+}
+</code></pre>
+<h2 id="flags-affected"><a class="header" href="#flags-affected">Flags Affected</a></h2>
+<p>The <code>CF</code> flag contains the value of the last bit shifted out of the destination operand; it is undefined for <code>SHL</code> and <code>SHR</code> instructions where the count is greater than or equal to the size (in bits) of the destination operand. The <code>OF</code> flag is affected only for 1-bit shifts (see <a href="#description">Description</a> below); otherwise, it is undefined. The <code>SF</code>, <code>ZF</code>, and <code>PF</code> flags are set according to the result. If the count is 0, the flags are not affected. For a non-zero count, the <code>AF</code> flag is undefined.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../instructions/shift-and-rotate-instructions/README.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../instructions/bit-and-byte-instructions/README.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../instructions/shift-and-rotate-instructions/README.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../instructions/bit-and-byte-instructions/README.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

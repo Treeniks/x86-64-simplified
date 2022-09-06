@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>IDIV - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../registers.html">Registers</a></li><li class="chapter-item expanded "><a href="../../flags.html">Flags</a></li><li class="chapter-item expanded "><a href="../../condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="../../instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item expanded "><a href="../../instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/imul.html">IMUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item expanded "><a href="../../instructions/binary-arithmetic-instructions/idiv.html" class="active">IDIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jcc.html">Jcc</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/ret.html">RET</a></li></ol></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="idiv"><a class="header" href="#idiv"><code>IDIV</code></a></h1>
+<p>Signed Divide</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>IDIV r/m8</code></td><td style="text-align: left">Signed divide <code>AX</code> by <code>r/m8</code>; <code>AL</code> = Quotient, <code>AH</code> = Remainder</td></tr>
+<tr><td style="text-align: left"><code>IDIV r/m16</code></td><td style="text-align: left">Signed divide <code>DX:AX</code> by <code>r/m16</code>; <code>AX</code> = Quotient, <code>DX</code> = Remainder</td></tr>
+<tr><td style="text-align: left"><code>IDIV r/m32</code></td><td style="text-align: left">Signed divide <code>EDX:EAX</code> by <code>r/m32</code>; <code>EAX</code> = Quotient, <code>EDX</code> = Remainder</td></tr>
+<tr><td style="text-align: left"><code>IDIV r/m64</code></td><td style="text-align: left">Signed divide <code>RDX:RAX</code> by <code>r/m64</code>; <code>RAX</code> = Quotient, <code>RDX</code> = Remainder</td></tr>
+</tbody></table>
+</div>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:9.429760000000002em;vertical-align:-4.46488em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.964880000000001em;"><span style="top:-6.96488em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">AL</span></span></span></span><span style="top:-4.60744em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">AX</span></span></span></span><span style="top:-2.250000000000001em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">EAX</span></span></span></span><span style="top:0.10743999999999976em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">RAX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.46488em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.964880000000001em;"><span style="top:-6.96488em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.28811em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">r/m8</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">AX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-4.60744em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.28811em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">r/m16</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">DX:AX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-2.250000000000001em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.28811em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">r/m32</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">EDX:EAX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:0.10743999999999976em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.28811em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">r/m64</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">RDX:RAX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.46488em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.964880000000001em;"><span style="top:-6.96488em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">AH</span></span></span></span><span style="top:-4.60744em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">DX</span></span></span></span><span style="top:-2.250000000000001em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">EDX</span></span></span></span><span style="top:0.10743999999999976em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord text"><span class="mord texttt">RDX</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.46488em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.964880000000001em;"><span style="top:-6.96488em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord texttt">AX</span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord texttt">r/m8</span></span></span></span><span style="top:-4.60744em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord texttt">DX:AX</span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord texttt">r/m16</span></span></span></span><span style="top:-2.250000000000001em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord texttt">EDX:EAX</span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord texttt">r/m32</span></span></span></span><span style="top:0.10743999999999976em;"><span class="pstrut" style="height:3.28811em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord text"><span class="mord texttt">RDX:RAX</span></span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">mod</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord texttt">r/m64</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.46488em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Divides the (signed) value in the <code>AX</code>, <code>DX:AX</code>, or <code>EDX:EAX</code> (dividend) by the source operand (divisor) and stores the result in the <code>AX</code> (<code>AH:AL</code>), <code>DX:AX</code>, or <code>EDX:EAX</code> registers. The source operand can be a general-purpose register or a memory location. The action of this instruction depends on the operand size (dividend/divisor).</p>
+<p>Non-integral results are truncated (chopped) towards 0. The remainder is always less than the divisor in magnitude. Overflow is indicated with the <code>#DE</code> (divide error) exception rather than with the <code>CF</code> flag.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the <code>REX.R</code> prefix permits access to additional registers (<code>R8</code>-<code>R15</code>). Use of the <code>REX.W</code> prefix promotes operation to 64 bits. In 64-bit mode when <code>REX.W</code> is applied, the instruction divides the signed value in <code>RDX:RAX</code> by the source operand. <code>RAX</code> contains a 64-bit quotient; <code>RDX</code> contains a 64-bit remainder.</p>
+<p>See the summary chart at the beginning of this section for encoding data and limits. See the table below.</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Operand Size</th><th style="text-align: left">Dividend</th><th style="text-align: left">Divisor</th><th style="text-align: left">Quotient</th><th style="text-align: left">Remainder</th><th style="text-align: left">Quotient Range</th></tr></thead><tbody>
+<tr><td style="text-align: left">Word/byte</td><td style="text-align: left"><code>AX</code></td><td style="text-align: left"><code>r/m8</code></td><td style="text-align: left"><code>AL</code></td><td style="text-align: left"><code>AH</code></td><td style="text-align: left">-128 to +127</td></tr>
+<tr><td style="text-align: left">Doubleword/word</td><td style="text-align: left"><code>DX:AX</code></td><td style="text-align: left"><code>r/m16</code></td><td style="text-align: left"><code>AX</code></td><td style="text-align: left"><code>DX</code></td><td style="text-align: left">-32,768 to +32,767</td></tr>
+<tr><td style="text-align: left">Quadword/doubleword</td><td style="text-align: left"><code>EDX:EAX</code></td><td style="text-align: left"><code>r/m32</code></td><td style="text-align: left"><code>EAX</code></td><td style="text-align: left"><code>EDX</code></td><td style="text-align: left">-2<sup>31</sup> to +2<sup>31</sup> - 1</td></tr>
+<tr><td style="text-align: left">Doublequadword/quadword</td><td style="text-align: left"><code>RDX:RAX</code></td><td style="text-align: left"><code>r/m64</code></td><td style="text-align: left"><code>RAX</code></td><td style="text-align: left"><code>RDX</code></td><td style="text-align: left">-2<sup>63</sup> to +2<sup>63</sup> - 1</td></tr>
+</tbody></table>
+</div>
+<h2 id="operation"><a class="header" href="#operation">Operation</a></h2>
+<p><code>SRC</code>: operand</p>
+<h3 id="operandsize--8"><a class="header" href="#operandsize--8">OperandSize = 8</a></h3>
+<pre><code class="language-rust ignore">if SRC == 0 {
+<span class="boring">    DE; // divide error
+</span>}
+
+temp = AX / SRC; // signed division
+if temp &gt; 0x7F || temp &lt; 0x80 {
+    // if a positive result is greater than 0x7F
+    // or a negative result is less than 0x80
+<span class="boring">    DE; // divide error
+</span>} else {
+    AL = temp;
+    AH = AX % SRC; // signed modulus
+}
+</code></pre>
+<h3 id="operandsize--16"><a class="header" href="#operandsize--16">OperandSize = 16</a></h3>
+<pre><code class="language-rust ignore">if SRC == 0 {
+<span class="boring">    DE; // divide error
+</span>}
+
+temp = DX:AX / SRC; // signed division
+if temp &gt; 0x7FFF || temp &lt; 0x8000 {
+    // if a positive result is greater than 0x7FFF
+    // or a negative result is less than 0x8000
+<span class="boring">    DE; // divide error
+</span>} else {
+    AX = temp;
+    DX = DX:AX % SRC; // signed modulus
+}
+</code></pre>
+<h3 id="operandsize--32"><a class="header" href="#operandsize--32">OperandSize = 32</a></h3>
+<pre><code class="language-rust ignore">if SRC == 0 {
+<span class="boring">    DE; // divide error
+</span>}
+
+temp = EDX:EAX / SRC; // signed division
+if temp &gt; 0x7FFF_FFFF || temp &lt; 0x8000_0000 {
+    // if a positive result is greater than 0x7FFF_FFFF
+    // or a negative result is less than 0x8000_0000
+<span class="boring">    DE; // divide error
+</span>} else {
+    EAX = temp;
+    EDX = EDX:EAX % SRC; // signed modulus
+}
+</code></pre>
+<h3 id="operandsize--64"><a class="header" href="#operandsize--64">OperandSize = 64</a></h3>
+<pre><code class="language-rust ignore">temp = RDX:RAX / SRC; // signed division
+if temp &gt; 0x7FFF_FFFF_FFFF_FFFF || temp &lt; 0x8000_0000_0000_0000 {
+    // if a positive result is greater than 0x7FFF_FFFF_FFFF_FFFF
+    // or a negative result is less than 0x8000_0000_0000_0000
+<span class="boring">    DE; // divide error
+</span>} else {
+    RAX = temp;
+    RDX = RDX:RAX % SRC; // signed modulus
+}
+</code></pre>
+<h2 id="flags-affected"><a class="header" href="#flags-affected">Flags Affected</a></h2>
+<p>The <code>CF</code>, <code>OF</code>, <code>SF</code>, <code>ZF</code>, <code>AF</code>, and <code>PF</code> flags are undefined.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../instructions/binary-arithmetic-instructions/mul.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../instructions/binary-arithmetic-instructions/div.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../instructions/binary-arithmetic-instructions/mul.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../instructions/binary-arithmetic-instructions/div.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

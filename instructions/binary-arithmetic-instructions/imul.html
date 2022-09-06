@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>IMUL - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../registers.html">Registers</a></li><li class="chapter-item expanded "><a href="../../flags.html">Flags</a></li><li class="chapter-item expanded "><a href="../../condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="../../instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item expanded "><a href="../../instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item expanded "><a href="../../instructions/binary-arithmetic-instructions/imul.html" class="active">IMUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/idiv.html">IDIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jcc.html">Jcc</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/ret.html">RET</a></li></ol></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="imul"><a class="header" href="#imul"><code>IMUL</code></a></h1>
+<p>Signed Multiply</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>IMUL r/m8</code></td><td style="text-align: left"><code>AX = AL * r/m8</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r/m16</code></td><td style="text-align: left"><code>DX:AX = AX * r/m16</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r/m32</code></td><td style="text-align: left"><code>EDX:EAX = EAX * r/m32</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r/m64</code></td><td style="text-align: left"><code>RDX:RAX = RAX * r/m64</code></td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>IMUL r16, r/m16</code></td><td style="text-align: left"><code>r16 = r16 * r/m16</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r32, r/m32</code></td><td style="text-align: left"><code>r32 = r32 * r/m32</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r64, r/m64</code></td><td style="text-align: left"><code>r64 = r64 * r/m64</code></td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>IMUL r16, r/m16, imm16</code>*</td><td style="text-align: left"><code>r16 = r/m16 * imm16</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r32, r/m32, imm32</code>*</td><td style="text-align: left"><code>r32 = r/m32 * imm32</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r64, r/m64, imm32</code>*</td><td style="text-align: left"><code>r64 = r/m64 * imm32</code></td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>IMUL r16, r/m16, imm8</code>*</td><td style="text-align: left"><code>r16 = r/m16 *</code> sign-extended <code>imm8</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r32, r/m32, imm8</code>*</td><td style="text-align: left"><code>r32 = r/m32 *</code> sign-extended <code>imm8</code></td></tr>
+<tr><td style="text-align: left"><code>IMUL r64, r/m64, imm8</code>*</td><td style="text-align: left"><code>r64 = r/m64 *</code> sign-extended <code>imm8</code></td></tr>
+</tbody></table>
+</div>
+<p>* If the first two operands are the same, the second one can be left out when using <code>nasm</code> or <code>.intel_syntax noprefix</code>.</p>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Performs a signed multiplication of two operands. This instruction has three forms, depending on the number of operands.</p>
+<ul>
+<li><strong>One-operand form</strong><br />
+This form is identical to that used by the <code>MUL</code> instruction. Here, the source operand (in a general-purpose register or memory location) is multiplied by the value in the <code>AL</code>, <code>AX</code>, <code>EAX</code>, or <code>RAX</code> register (depending on the operand size) and the product (twice the size of the input operand) is stored in the <code>AX</code>, <code>DX:AX</code>, <code>EDX:EAX</code>, or <code>RDX:RAX</code> registers, respectively.</li>
+<li><strong>Two-operand form</strong><br />
+With this form the destination operand (the first operand) is multiplied by the source operand (second operand). The destination operand is a general-purpose register and the source operand is an immediate value, a general-purpose register, or a memory location. The intermediate product (twice the size of the input operand) is truncated and stored in the destination operand location.</li>
+<li><strong>Three-operand form</strong><br />
+This form requires a destination operand (the first operand) and two source operands (the second and the third operands). Here, the first source operand (which can be a general-purpose register or a memory location) is multiplied by the second source operand (an immediate value). The intermediate product (twice the size of the first source operand) is truncated and stored in the destination operand (a general-purpose register).
+When an immediate value is used as an operand, it is sign-extended to the length of the destination operand format.</li>
+</ul>
+<p>The <code>CF</code> and <code>OF</code> flags are set when the signed integer value of the intermediate product differs from the sign-extended operand-size-truncated product, otherwise the <code>CF</code> and <code>OF</code> flags are cleared.</p>
+<p>The three forms of the <code>IMUL</code> instruction are similar in that the length of the product is calculated to twice the length of the operands. With the one-operand form, the product is stored exactly in the destination. With the two- and three- operand forms, however, the result is truncated to the length of the destination before it is stored in the destination register. Because of this truncation, the <code>CF</code> or <code>OF</code> flag should be tested to ensure that no significant bits are lost.</p>
+<p>The two- and three-operand forms may also be used with unsigned operands because the lower half of the product is the same regardless if the operands are signed or unsigned. The <code>CF</code> and <code>OF</code> flags, however, cannot be used to determine if the upper half of the result is non-zero.</p>
+<p>In 64-bit mode, the instruction’s default operation size is 32 bits. Use of the <code>REX.R</code> prefix permits access to additional registers (<code>R8</code>-<code>R15</code>). Use of the <code>REX.W</code> prefix promotes operation to 64 bits. Use of <code>REX.W</code> modifies the three forms of the instruction as follows.</p>
+<ul>
+<li><strong>One-operand form</strong><br />
+The source operand (in a 64-bit general-purpose register or memory location) is multiplied by the value in the <code>RAX</code> register and the product is stored in the <code>RDX:RAX</code> registers.</li>
+<li><strong>Two-operand form</strong><br />
+The source operand is promoted to 64 bits if it is a register or a memory location. The destination operand is promoted to 64 bits.</li>
+<li><strong>Three-operand form</strong><br />
+The first source operand (either a register or a memory location) and destination operand are promoted to 64 bits. If the source operand is an immediate, it is sign-extended to 64 bits.</li>
+</ul>
+<h2 id="operation"><a class="header" href="#operation">Operation</a></h2>
+<h3 id="single-operand"><a class="header" href="#single-operand">Single Operand</a></h3>
+<p><code>SRC</code>: operand</p>
+<h4 id="8-bit"><a class="header" href="#8-bit">8-bit</a></h4>
+<pre><code class="language-rust ignore">TMP_XP = AL * SRC; // Signed multiplication
+// TMP-XP is a signed integer at twice the width of the SRC
+AX = TMP_XP[0..=15];
+if SignExtend(TMP_XP[0..=7]) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h4 id="16-bit"><a class="header" href="#16-bit">16-bit</a></h4>
+<pre><code class="language-rust ignore">TMP_XP = AX * SRC; // Signed multiplication
+// TMP_XP is a signed integer at twice the width of the SRC
+DX:AX = TMP_XP[0..=31];
+if SignExtend(TMP_XP[0..=15]) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h4 id="32-bit"><a class="header" href="#32-bit">32-bit</a></h4>
+<pre><code class="language-rust ignore">TMP_XP = EAX * SRC; // Signed multiplication
+// TMP_XP is a signed integer at twice the width of the SRC
+EDX:EAX = TMP_XP[0..=63];
+if SignExtend(TMP_XP[0..=31]) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h4 id="64-bit"><a class="header" href="#64-bit">64-bit</a></h4>
+<pre><code class="language-rust ignore">TMP_XP = RAX * SRC; // Signed multiplication
+// TMP_XP is a signed integer at twice the width of the SRC
+RDX:RAX = TMP_XP[0..=127];
+if SignExtend(TMP_XP[0..=63]) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h3 id="two-operands"><a class="header" href="#two-operands">Two Operands</a></h3>
+<p><code>DEST</code>: first operand<br />
+<code>SRC</code>: second operand</p>
+<pre><code class="language-rust ignore">TMP_XP = DEST * SRC // Signed multiplication
+// TMP_XP is a signed integer at twice the width of the SRC
+DEST = TruncateToOperandSize(TMP_XP);
+if SignExtend(DEST) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h3 id="three-operands"><a class="header" href="#three-operands">Three Operands</a></h3>
+<p><code>DEST</code>: first operand<br />
+<code>SRC1</code>: second operand<br />
+<code>SRC2</code>: third operand</p>
+<pre><code class="language-rust ignore">TMP_XP = SRC1 * SRC2 // Signed multiplication
+// TMP_XP is a signed integer at twice the width of the SRC1
+DEST = TruncateToOperandSize(TMP_XP);
+if SignExtend(DEST) == TMP_XP {
+    CF = 0;
+    OF = 0;
+} else {
+    CF = 1;
+    OF = 1;
+}
+</code></pre>
+<h2 id="flags-affected"><a class="header" href="#flags-affected">Flags Affected</a></h2>
+<p>For the one operand form of the instruction, the <code>CF</code> and <code>OF</code> flags are set when significant bits are carried into the upper half of the result and cleared when the result fits exactly in the lower half of the result. For the two- and three-operand forms of the instruction, the <code>CF</code> and <code>OF</code> flags are set when the result must be truncated to fit in the destination operand size and cleared when the result fits exactly in the destination operand size. The <code>SF</code>, <code>ZF</code>, <code>AF</code>, and <code>PF</code> flags are undefined.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../instructions/binary-arithmetic-instructions/sub.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../instructions/binary-arithmetic-instructions/mul.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../instructions/binary-arithmetic-instructions/sub.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../instructions/binary-arithmetic-instructions/mul.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

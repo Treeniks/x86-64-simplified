@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Jcc - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../registers.html">Registers</a></li><li class="chapter-item expanded "><a href="../../flags.html">Flags</a></li><li class="chapter-item expanded "><a href="../../condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="../../instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/imul.html">IMUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/idiv.html">IDIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item expanded "><a href="../../instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item expanded "><a href="../../instructions/control-transfer-instructions/jcc.html" class="active">Jcc</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/ret.html">RET</a></li></ol></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="jcc"><a class="header" href="#jcc"><code>Jcc</code></a></h1>
+<p>Jump if Condition Is Met</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>Jcc rel8</code></td><td style="text-align: left">Jump short if <code>cc</code></td></tr>
+<tr><td style="text-align: left"><code>Jcc rel16</code></td><td style="text-align: left">Jump near if <code>cc</code>; Not supported in 64-bit mode</td></tr>
+<tr><td style="text-align: left"><code>Jcc rel32</code></td><td style="text-align: left">Jump near if <code>cc</code></td></tr>
+</tbody></table>
+</div>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Checks the state of one or more of the status flags in the <code>EFLAGS</code> register (<code>CF</code>, <code>OF</code>, <code>PF</code>, <code>SF</code>, and <code>ZF</code>) and, if the flags are in the specified state (condition), performs a jump to the target instruction specified by the destination operand. A condition code (<code>cc</code>) is associated with each instruction to indicate the condition being tested for. If the condition is not satisfied, the jump is not performed and execution continues with the instruction following the <code>Jcc</code> instruction.</p>
+<p>The target instruction is specified with a relative offset (a signed offset relative to the current value of the instruction pointer in the <code>EIP</code> register). A relative offset (<code>rel8</code>, <code>rel16</code>, or <code>rel32</code>) is generally specified as a label in assembly code, but at the machine code level, it is encoded as a signed, 8-bit or 32-bit immediate value, which is added to the instruction pointer. Instruction coding is most efficient for offsets of –128 to +127. If the operand-size attribute is 16, the upper two bytes of the <code>EIP</code> register are cleared, resulting in a maximum instruction pointer size of 16 bits.</p>
+<p>The conditions for each <code>Jcc</code> mnemonic are given in the “Description” column of the table on the preceding page. The terms “less” and “greater” are used for comparisons of signed integers and the terms “above” and “below” are used for unsigned integers.</p>
+<p>Because a particular state of the status flags can sometimes be interpreted in two ways, two mnemonics are defined for some opcodes. For example, the <code>JA</code> (jump if above) instruction and the <code>JNBE</code> (jump if not below or equal) instruction are alternate mnemonics for the opcode <code>0x77</code>.</p>
+<p>The <code>Jcc</code> instruction does not support far jumps (jumps to other code segments). When the target for the conditional jump is in a different segment, use the opposite condition from the condition being tested for the <code>Jcc</code> instruction, and then access the target with an unconditional far jump (<code>JMP</code> instruction) to the other segment. For example, the following conditional far jump is illegal:</p>
+<pre><code class="language-x86asm">jz FARLABEL
+</code></pre>
+<p>To accomplish this far jump, use the following two instructions:</p>
+<pre><code class="language-x86asm">jnz BEYOND
+jmp FARLABEL
+BEYOND:
+</code></pre>
+<p>The <code>JRCXZ</code>, <code>JECXZ</code> and <code>JCXZ</code> instructions differ from other <code>Jcc</code> instructions because they do not check status flags. Instead, they check <code>RCX</code>, <code>ECX</code> or <code>CX</code> for 0. The register checked is determined by the address-size attribute. These instructions are useful when used at the beginning of a loop that terminates with a conditional loop instruction (such as <code>LOOPNE</code>). They can be used to prevent an instruction sequence from entering a loop when <code>RCX</code>, <code>ECX</code> or <code>CX</code> is 0. This would cause the loop to execute 264, 232 or 64K times (not zero times).</p>
+<p>All conditional jumps are converted to code fetches of one or two cache lines, regardless of jump address or cacheability.</p>
+<p>In 64-bit mode, operand size is fixed at 64 bits. <code>JMP</code> Short is <code>RIP</code> = <code>RIP</code> + 8-bit offset sign extended to 64 bits. <code>JMP</code> Near is <code>RIP</code> = <code>RIP</code> + 32-bit offset sign extended to 64 bits.</p>
+<h2 id="operation"><a class="header" href="#operation">Operation</a></h2>
+<pre><code class="language-rust ignore">if condition {
+    tempEIP = EIP + SignExtend(DEST);
+    if OperandSize == 16 {
+        tempEIP = tempEIP &amp;&amp; 0x0000_FFFF;
+    }
+    if /* tempEIP is not within code segment limit */ {
+        #GP(0);
+    } else {
+        EIP = tempEIP;
+    }
+}
+</code></pre>
+<h2 id="flags-affected"><a class="header" href="#flags-affected">Flags Affected</a></h2>
+<p>None.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../instructions/control-transfer-instructions/jmp.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../instructions/control-transfer-instructions/call.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../instructions/control-transfer-instructions/jmp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../instructions/control-transfer-instructions/call.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

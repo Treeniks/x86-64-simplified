@@ -1,0 +1,808 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js ayu">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RET - x86-64 Simplified</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "ayu";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../prefix.html">Prefix</a></li><li class="spacer"></li><li class="chapter-item expanded "><a href="../../registers.html">Registers</a></li><li class="chapter-item expanded "><a href="../../flags.html">Flags</a></li><li class="chapter-item expanded "><a href="../../condition-codes.html">Condition Codes</a></li><li class="chapter-item expanded "><a href="../../instructions/README.html">Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/README.html">Data Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/mov.html">MOV</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/xchg.html">XCHG</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/push.html">PUSH</a></li><li class="chapter-item "><a href="../../instructions/data-transfer-instructions/pop.html">POP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/README.html">Binary Arithmetic Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/add.html">ADD</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/sub.html">SUB</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/imul.html">IMUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/mul.html">MUL</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/idiv.html">IDIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/div.html">DIV</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/inc.html">INC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/dec.html">DEC</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/neg.html">NEG</a></li><li class="chapter-item "><a href="../../instructions/binary-arithmetic-instructions/cmp.html">CMP</a></li></ol></li><li class="chapter-item "><a href="../../instructions/logical-instructions/README.html">Logical Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/logical-instructions/and.html">AND</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/or.html">OR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/xor.html">XOR</a></li><li class="chapter-item "><a href="../../instructions/logical-instructions/not.html">NOT</a></li></ol></li><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/README.html">Shift and Rotate Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/shift-and-rotate-instructions/sal,sar,shl,shr.html">SAL|SAR|SHL|SHR</a></li></ol></li><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/README.html">Bit and Byte Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/bit-and-byte-instructions/test.html">TEST</a></li></ol></li><li class="chapter-item expanded "><a href="../../instructions/control-transfer-instructions/README.html">Control Transfer Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jmp.html">JMP</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/jcc.html">Jcc</a></li><li class="chapter-item "><a href="../../instructions/control-transfer-instructions/call.html">CALL</a></li><li class="chapter-item expanded "><a href="../../instructions/control-transfer-instructions/ret.html" class="active">RET</a></li></ol></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/README.html">Miscellaneous Instructions</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/lea.html">LEA</a></li><li class="chapter-item "><a href="../../instructions/miscellaneous-instructions/nop.html">NOP</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../system-v-abi.html">System V ABI</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu (default)</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">x86-64 Simplified</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/Treeniks/x86-64-simplified" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="ret"><a class="header" href="#ret"><code>RET</code></a></h1>
+<p>Return from Procedure</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: left">Instruction</th><th style="text-align: left">Description</th></tr></thead><tbody>
+<tr><td style="text-align: left"><code>RET</code></td><td style="text-align: left">Near return to calling procedure</td></tr>
+<tr><td style="text-align: left"><code>RET</code></td><td style="text-align: left">Far return to calling procedure</td></tr>
+<tr><td style="text-align: left"></td><td style="text-align: left"></td></tr>
+<tr><td style="text-align: left"><code>RET imm16</code></td><td style="text-align: left">Near return to calling procedure and pop <code>imm16</code> bytes from stack</td></tr>
+<tr><td style="text-align: left"><code>RET imm16</code></td><td style="text-align: left">Far return to calling procedure and pop <code>imm16</code> bytes from stack</td></tr>
+</tbody></table>
+</div>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>Transfers program control to a return address located on the top of the stack. The address is usually placed on the stack by a <code>CALL</code> instruction, and the return is made to the instruction that follows the <code>CALL</code> instruction.</p>
+<p>The optional source operand specifies the number of stack bytes to be released after the return address is popped; the default is none. This operand can be used to release parameters from the stack that were passed to the called procedure and are no longer needed. It must be used when the <code>CALL</code> instruction used to switch to a new procedure uses a call gate with a non-zero word count to access the new procedure. Here, the source operand for the <code>RET</code> instruction must specify the same number of bytes as is specified in the word count field of the call gate.</p>
+<p>The <code>RET</code> instruction can be used to execute three different types of returns:</p>
+<ul>
+<li><strong>Near return</strong><br />
+A return to a calling procedure within the current code segment (the segment currently pointed to by the <code>CS</code> register), sometimes referred to as an intrasegment return.</li>
+<li><strong>Far return</strong><br />
+A return to a calling procedure located in a different segment than the current code segment, sometimes referred to as an intersegment return.</li>
+<li><strong>Inter-privilege-level far return</strong><br />
+A far return to a different privilege level than that of the currently executing program or procedure.
+The inter-privilege-level return type can only be executed in protected mode. See the section titled “Calling Procedures Using Call and RET” in Chapter 6 of the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1, for detailed information on near, far, and inter-privilege-level returns.</li>
+</ul>
+<p>When executing a near return, the processor pops the return instruction pointer (offset) from the top of the stack into the <code>EIP</code> register and begins program execution at the new instruction pointer. The <code>CS</code> register is unchanged.</p>
+<p>When executing a far return, the processor pops the return instruction pointer from the top of the stack into the <code>EIP</code> register, then pops the segment selector from the top of the stack into the <code>CS</code> register. The processor then begins program execution in the new code segment at the new instruction pointer.</p>
+<p>The mechanics of an inter-privilege-level far return are similar to an intersegment return, except that the processor examines the privilege levels and access rights of the code and stack segments being returned to determine if the control transfer is allowed to be made. The <code>DS</code>, <code>ES</code>, <code>FS</code>, and <code>GS</code> segment registers are cleared by the <code>RET</code> instruction during an inter-privilege-level return if they refer to segments that are not allowed to be accessed at the new privilege level. Since a stack switch also occurs on an inter-privilege level return, the <code>ESP</code> and <code>SS</code> registers are loaded from the stack.</p>
+<p>If parameters are passed to the called procedure during an inter-privilege level call, the optional source operand must be used with the <code>RET</code> instruction to release the parameters on the return. Here, the parameters are released both from the called procedure’s stack and the calling procedure’s stack (that is, the stack being returned to).</p>
+<p>In 64-bit mode, the default operation size of this instruction is the stack-address size, i.e. 64 bits. This applies to near returns, not far returns; the default operation size of far returns is 32 bits.</p>
+<p>Refer to Chapter 6, “Procedure Calls, Interrupts, and Exceptions” and Chapter 18, “Control-Flow Enforcement Technology (CET)” in the Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 1 for CET details.</p>
+<h3 id="instruction-ordering"><a class="header" href="#instruction-ordering">Instruction ordering</a></h3>
+<p>Instructions following a far return may be fetched from memory before earlier instructions complete execution, but they will not execute (even speculatively) until all instructions prior to the far return have completed execution (the later instructions may execute before data stored by the earlier instructions have become globally visible).</p>
+<p>Unlike near indirect <code>CALL</code> and near indirect <code>JMP</code>, the processor will not speculatively execute the next sequential instruction after a near <code>RET</code> unless that instruction is also the target of a jump or is a target in a branch predictor.</p>
+<h2 id="operation"><a class="header" href="#operation">Operation</a></h2>
+<pre><code class="language-rust ignore">// near return
+if instruction == near return {
+    if OperandSize == 32 {
+        if /* top 4 bytes of stack not within stack limits */ {
+            #SS(0);
+        }
+        EIP = Pop();
+        if ShadowStackEnabled(CPL) {
+            tempSsEIP = ShadowStackPop4B();
+            if EIP != TempSsEIP {
+                #CP(NEAR_RET);
+            }
+        }
+    } else {
+        if OperandSize == 64 {
+            if /* top 8 bytes of stack not within stack limits */ {
+                #SS(0);
+            }
+            RIP = Pop();
+            if ShadowStackEnabled(CPL) {
+                tempSsEIP = ShadowStackPop8B();
+                if RIP != tempSsEIP {
+                    #CP(NEAR_RET);
+                }
+            }
+        } else { // OperandSize == 16
+            if /* top 2 bytes of stack not within stack limits */ {
+                #SS(0);
+            }
+            tempEIP = Pop();
+            tempEIP = tempEIP &amp;&amp; 0x0000_FFFF;
+            if /* tempEIP not within code segment limits */ {
+                #GP(0);
+            }
+            EIP = tempEIP;
+            if ShadowStackEnabled(CPL) {
+                tempSsEip = ShadowStackPop4B();
+                if EIP != tempSsEIP {
+                    #CP(NEAR_RET);
+                }
+            }
+        }
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from stack
+        if StackAddressSize == 32 {
+            ESP = ESP + SRC;
+        } else {
+            if StackAddressSize == 64 {
+                RSP = RSP + SRC;
+            } else { // StackAddressSize == 16
+                SP = SP + SRC;
+            }
+        }
+    }
+}
+
+// real-address mode or virtual-8086 mode
+if ((PE == 0) || (PE == 1 &amp;&amp; VM == 1)) &amp;&amp; instruction == far return {
+    if OperandSize == 32 {
+        if /* top 8 bytes of stack not within stack limits */ {
+            #SS(0);
+        }
+        EIP = Pop();
+        CS = Pop(); // 32-bit pop, high-order 16 bits discarded
+    } else { // OperandSize == 16
+        if /* top 4 bytes of stack not within stack limits */ {
+            #SS(0);
+        }
+        tempEIP = Pop();
+        tempEIP = tempEIP &amp;&amp; 0x0000_FFFF;
+        if /* tempEIP not within code segment limits */ {
+            #GP(0);
+        }
+        EIP = tempEIP;
+        CS = Pop(); // 16-bit pop
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from stack
+        SP = SP + (SRC &amp;&amp; 0xFFFF);
+    }
+}
+
+// protected mode, not virtual-8086 mode
+if (PE == 1 &amp;&amp; VM == 0 &amp;&amp; IA32_EFER.LMA == 0) &amp;&amp; instruction == far return {
+    if OperandSize == 32 {
+        if /* second doubleword on stack is not within stack limits */ {
+            #SS(0);
+        }
+    } else { // OperandSize == 16
+        if /* second word on stack is not within stack limits */ {
+            #SS(0);
+        }
+    }
+    if /* return code segment selector is NULL */ {
+        #GP(0);
+    }
+    if /* return code segment selector addresses descriptor beyond descriptor table limit */ {
+        #GP(selector);
+    }
+    /* Obtain descriptor to which return code segment selector points from descriptor table; */
+    if /* return code segment descriptor is not a code segment */ {
+        #GP(selector);
+    }
+    if return code segment selector RPL &lt; CPL {
+        #GP(selector);
+    }
+    if /* return code segment descriptor is conforming */
+            &amp;&amp; return code segment DPL &gt; return code segment selector RPL {
+        #GP(selector);
+    }
+    if /* return code segment descriptor is non-conforming */
+            &amp;&amp; return code segment DPL != return code segment selector RPL {
+        #GP(selector);
+    }
+    if /* return code segment descriptor is not present */ {
+        #NP(selector);
+    }
+    if return code segment selector RPL &gt; CPL {
+        goto 'RETURN_TO_OUTER_PRIVILEGE_LEVEL;
+    } else {
+        goto 'RETURN_TO_SAME_PRIVILEGE_LEVEL;
+    }
+}
+
+'RETURN_TO_SAME_PRIVILEGE_LEVEL {
+    if /* the return instruction pointer is not within the return code segment limit */ {
+        #GP(0);
+    }
+    if OperandSize == 32 {
+        EIP = Pop();
+        CS = Pop(); // 32-bit pop, high-order 16 bits discarded
+    } else { // OperandSize == 16
+        EIP = Pop();
+        EIP = EIP &amp;&amp; 0x0000_FFFF;
+        CS = Pop(); // 16-bit pop
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from stack
+        if StackAddressSize == 32 {
+            ESP = ESP + SRC;
+        } else { // StackAddressSize == 16
+            SP = SP + SRC;
+        }
+    }
+    if ShadowStackEnabled(CPL) {
+        // SSP must be 8 byte aligned
+        if SSP &amp;&amp; 0x7 != 0 {
+            #CP(FAR-RET/IRET);
+        }
+        tempSsCS = shadow_stack_load 8 bytes from SSP+16;
+        tempSsLIP = shadow_stack_load 8 bytes from SSP+8;
+        prevSSP = shadow_stack_load 8 bytes from SSP;
+        SSP = SSP + 24;
+        // do a 64 bit-compare to check if any bits beyond bit 15 are set
+        tempCS = CS; // zero pad to 64 bit
+        if tempCS != tempSsCS {
+            #CP(FAR-RET/IRET);
+        }
+        // do a 64 bit-compare; pad CSBASE+RIP with 0 for 32 bit LIP
+        if CSBASE + RIP != tempSsLIP {
+            #CP(FAR-RET/IRET);
+        }
+        // prevSSP must be 4 byte aligned
+        if prevSSP &amp;&amp; 0x3 != 0 {
+            #CP(FAR-RET/IRET);
+        }
+        // in legacy mode SSP must be in low 4GB
+        if prevSSP[32..=63] != 0 {
+            #GP(0);
+        }
+        SSP = prevSSP;
+    }
+}
+
+'RETURN_TO_OUTER_PRIVILEGE_LEVEL {
+    if /* top (16 + SRC) bytes of stack are not within stack limits (OperandSize == 32) */
+            || /* top (8 + SRC) bytes of stack are not within stack limits (OperandSize == 16) */ {
+        #SS(0);
+    }
+    /* Read return segment selector; */
+    if /* stack segment selector is NULL */ {
+        #GP(0);
+    }
+    if /* return stack segment selector index is not within its descriptor table limits */ {
+        #GP(selector);
+    }
+    /* Read segment descriptor pointed to by return segment selector; */
+    if stack segment selector RPL != RPL of the return code segment selector
+            || /* stack segment is not a writable data segment */
+            || stack segment descriptor DPL != RPL of the return code segment selector {
+        #GP(selector);
+    }
+    if /* stack segment not present */ {
+        #SS(StackSegmentSelector);
+    }
+    if /* the return instruction pointer is not within the return code segment limit */ {
+        #GP(0);
+    }
+    if OperandSize == 32 {
+        EIP = Pop();
+        CS = Pop(); // 32-bit pop, high-order 16 bits discarded; segment descriptor loaded
+        CS(RPL) = ReturnCodeSegmentSelector(RPL);
+        if /* instruction has immediate operand */ {
+            // release parameters from called procedure's stack
+            if StackAddressSize == 32 {
+                ESP = ESP + SRC;
+            } else { // StackAddressSize == 16
+                SP = SP + SRC;
+            }
+        }
+        tempESP = Pop();
+        tempSS = Pop(); // 32-bit pop, high-order 16 bits discarded; seg. descriptor loaded
+    } else { // OperandSize == 16
+        EIP = Pop();
+        EIP = EIP &amp;&amp; 0x0000_FFFF;
+        CS = Pop(); // 16-bit pop; segment descriptor loaded
+        CS(RPL) = ReturnCodeSegmentSelector(RPL);
+        if /* instruction has immediate operand */ {
+            // release parameters from called procedure's stack
+            if StackAddressSize == 32 {
+                ESP = ESP + SRC;
+            } else { // StackAddressSize == 16
+                SP = SP + SRC;
+            }
+        }
+        tempESP = Pop();
+        tempSS = Pop(); // 16-bit pop; segment descriptor loaded
+    }
+    if ShadowStackEnabled(CPL) {
+        // check if 8 byte aligned
+        if SSP &amp;&amp; 0x7 != 0 {
+            #CP(FAR-RET/IRET);
+        }
+        if ReturnCodeSegmentSelector(RPL) != 3 {
+            tempSsCS = shadow_stack_load 8 bytes from SSP+16;
+            tempSsLIP = shadow_stack_load 8 bytes from SSP+8;
+            tempSSP = shadow_stack_load 8 bytes from SSP;
+            SSP = SSP + 24;
+            // do 64 bit compare to detect bits beyond 15 being set
+            tempCS = CS; // zero extended to 64 bit
+            if tempCS != tempSsCS {
+                #CP(FAR-RET/IRET);
+            }
+            // do 64 bit compare; pad CSBASE+RIP with 0 for 32 bit LA
+            if CSBASE + RIP != tempSsLIP {
+                #CP(FAR-RET/IRET);
+            }
+            // check if 4 byte aligned
+            if tempSSP &amp;&amp; 0x3 != 0 {
+                #CP(FAR-RET/IRET);
+            }
+        }
+    }
+    tempOldCPL = CPL;
+
+    CPL = ReturnCodeSegmentSelector(RPL);
+    ESP = tempESP;
+    SS = tempSS;
+    tempOldSSP = SSP;
+    if ShadowStackEnabled(CPL) {
+        if CPL == 3 {
+            tempSSP = IA32_PL3_SSP;
+        }
+        if tempSSP[32..=63] != 0 {
+            #GP(0);
+        }
+        SSP = tempSSP;
+    }
+    // Now past all faulting points; safe to free the token. The token free is done using the old SSP
+    // and using a supervisor override as old CPL was a supervisor privilege level
+    if ShadowStackEnabled(tempOldCPL) {
+        expected_token_value = tempOldSSP | BUSY_BIT; // busy bit - bit position 0 - must be set
+        new_token_value = tempOldSSP; // clear the busy bit
+        shadow_stack_lock_cmpxchg8b(tempOldSSP, new_token_value, expected_token_value);
+    }
+    for SegReg in (ES, FS, GS, and DS) {
+        tempDesc = /* descriptor cache for SegReg */; // hidden part of segment register
+        if SegmentSelector == NULL || (tempDesc(DPL) &lt; CPL &amp;&amp; tempDesc(Type) is (/* data or non-conforming code */)) {
+            // segment register invalid
+            SegmentSelector = 0; // segment selector becomes null
+        }
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from calling procedure's stack
+        if StackAddressSize == 32 {
+            ESP = ESP + SRC;
+        } else { // StackAddressSize == 16
+            SP = SP + SRC;
+        }
+    }
+
+    // IA-32e Mode
+    if (PE == 1 &amp;&amp; VM == 0 &amp;&amp; IA32_EFER.LMA == 1) &amp;&amp; instruction == far return {
+        if OperandSize == 32 {
+            if /* second doubleword on stack is not within stack limits */ {
+                #SS(0);
+            }
+            if /* first or second doubleword on stack is not in canonical space */ {
+                #SS(0);
+            }
+        } else {
+            if OperandSize == 16 {
+                if /* second word on stack is not within stack limits */ {
+                    #SS(0);
+                }
+                if /* first or second word on stack is not in canonical space */ {
+                    #SS(0);
+                }
+            } else { // OperandSize == 64
+                if /* first or second quadword on stack is not in canonical space */ {
+                    #SS(0);
+                }
+            }
+        }
+        if /* return code segment selector is NULL */ {
+            #GP(0);
+        }
+        if /* return code segment selector addresses descriptor beyond descriptor table limit */ {
+            #GP(selector);
+        }
+        if /* return code segment selector addresses descriptor in non-canonical space */ {
+            #GP(selector);
+        }
+        /* obtain descriptor to which return code segment selector points from descriptor table; */
+        if /* return code segment descriptor is not a code segment */ {
+            #GP(selector);
+        }
+        if /* return code segment descriptor has L-bit == 1 and D-bit == 1 */ {
+            #GP(selector);
+        }
+        if return code segment selector RPL &lt; CPL {
+            #GP(selector);
+        }
+        if /* return code segment descriptor is conforming */
+                &amp;&amp; return code segment DPL &gt; return code segment selector RPL {
+            #GP(selector);
+        }
+        if /* return code segment descriptor is non-conforming */
+                &amp;&amp; return code segment DPL != return code segment selector RPL {
+            #GP(selector);
+        }
+        if /* return code segment descriptor is not present */ {
+            #NP(selector);
+        }
+        if return code segment selector RPL &gt; CPL {
+            goto 'IA_32E_MODE_RETURN_TO_OUTER_PRIVILEGE_LEVEL;
+        } else {
+            goto 'IA_32E_MODE_RETURN_TO_SAME_PRIVILEGE_LEVEL;
+        }
+    }
+}
+
+'IA_32E_MODE_RETURN_TO_SAME_PRIVILEGE_LEVEL {
+    if /* the return instruction pointer is not within the return code segment limit */ {
+        #GP(0);
+    }
+    if /* the return instruction pointer is not within canonical address space */ {
+        #GP(0);
+    }
+    if OperandSize == 32 {
+        EIP = Pop();
+        CS = Pop(); // 32-bit pop, high-order 16 bits discarded
+    } else {
+        if OperandSize == 16 {
+            EIP = Pop();
+            EIP = EIP &amp;&amp; 0x0000_FFFF;
+            CS = Pop(); // 16-bit pop
+        } else { // OperandSize == 64
+            RIP = Pop();
+            CS = Pop(); // 64-bit pop, high-order 48 bits discarded
+        }
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from stack
+        if StackAddressSize == 32 {
+            ESP = ESP + SRC;
+        } else {
+            if StackAddressSize == 16 {
+                SP = SP + SRC;
+            } else { // StackAddressSize == 64
+                RSP = RSP + SRC;
+            }
+        }
+    }
+    if ShadowStackEnabled(CPL) {
+        if SSP &amp;&amp; 0x7 != 0 {
+            // check if aligned to 8 bytes
+            #CP(FAR-RET/IRET);
+        }
+        tempSsCS = shadow_stack_load 8 bytes from SSP+16;
+        tempSsLIP = shadow_stack_load 8 bytes from SSP+8;
+        tempSSP = shadow_stack_load 8 bytes from SSP;
+        SSP = SSP + 24;
+        tempCS = CS; // zero padded to 64 bit
+        if tempCS != tempSsCS {
+            // 64 bit compare; CS zero padded to 64 bits
+            #CP(FAR-RET/IRET);
+        }
+        if CSBASE + RIP != tempSsLIP {
+            // 64 bit compare
+            #CP(FAR-RET/IRET);
+        }
+        if tempSSP &amp;&amp; 0x3 != 0 {
+            // check if aligned to 4 bytes
+            #CP(FAR-RET/IRET);
+        }
+        if (CS.L == 0 &amp;&amp; tempSSP[32..=63] != 0)
+                || (CS.L == 1 &amp;&amp; /* tempSSP is not canonical relative to the current paging mode */) {
+            #GP(0);
+        }
+        SSP = tempSSP;
+    }
+}
+
+'IA_32E_MODE_RETURN_TO_OUTER_PRIVILEGE_LEVEL {
+    if /* top (16 + SRC) bytes of stack are not within stack limits (OperandSize == 32) */
+            || /* top (8 + SRC) bytes of stack are not within stack limits (OperandSize == 16) */ {
+        #SS(0);
+    }
+    if /* top (16 + SRC) bytes of stack are not in canonical address space (OperandSize == 32) */
+            || /* top (8 + SRC) bytes of stack are not in canonical address space (OperandSize == 16) */
+            || /* top (32 + SRC) bytes of stack are not in canonical address space (OperandSize == 64) */ {
+        #SS(0);
+    }
+    /* Read return stack segment selector; */
+    if /* stack segment selector is NULL */ {
+        if new CS descriptor L-bit == 0 {
+            #GP(selector);
+        }
+        if stack segment selector RPL == 3 {
+            #GP(selector);
+        }
+    }
+    if /* return stack segment descriptor is not within descriptor table limits */ {
+        #GP(selector);
+    }
+    if /* return stack segment descriptor is in non-canonical address space */ {
+        #GP(selector);
+    }
+    /* Read segment descriptor pointed to by return segment selector; */
+    if stack segment selector RPL != RPL of the return code segment selector
+            || /* stack segment is not a writable data segment */
+            || stack segment descriptor DPL != RPL of the return code segment selector {
+        #GP(selector);
+    }
+    if /* stack segment not present */ {
+        #SS(StackSegmentSelector);
+    }
+    if /* the return instruction pointer is not within the return code segment limit */ {
+        #GP(0);
+    }
+    if /* the return instruction pointer is not within canonical address space */ {
+        #GP(0);
+    }
+    if OperandSize == 32 {
+        EIP = Pop();
+        CS = Pop(); // 32-bit pop, high-order 16 bits discarded, segment descriptor loaded
+        CS(RPL) = ReturnCodeSegmentSelector(RPL);
+        if /* instruction has immediate operand */ {
+            // release parameters from called procedure's stack
+            if StackAddressSize == 32 {
+                ESP = ESP + SRC;
+            } else {
+                if StackAddressSize == 16 {
+                    SP = SP + SRC;
+                } else { // StackAddressSize == 64
+                    RSP = RSP + SRC;
+                }
+            }
+        }
+        tempESP = Pop();
+        tempSS = Pop(); // 32-bit pop, high-order 16 bits discarded, segment descriptor loaded
+    } else {
+        if OperandSize == 16 {
+            EIP = Pop();
+            EIP = EIP &amp;&amp; 0x0000_FFFF;
+            CS = Pop(); // 16-bit pop; segment descriptor loaded
+            CS(RPL) = ReturnCodeSegmentSelector(RPL);
+            if /* instruction has immediate operand */ {
+                // release parameters from called procedure's stack
+                if StackAddressSize == 32 {
+                    ESP = ESP + SRC;
+                } else {
+                    if StackAddressSize == 16 {
+                        SP = SP + SRC;
+                    } else { // StackAddressSize == 64
+                        RSP = RSP + SRC;
+                    }
+                }
+            }
+            tempESP = Pop();
+            tempSS = Pop(); // 16-bit pop; segment descriptor loaded
+        } else { // OperandSize = 64
+            RIP = Pop();
+            CS = Pop(); // 64-bit pop; high-order 48 bits discarded; seg. descriptor loaded
+            CS(RPL) = ReturnCodeSegmentSelector(RPL);
+            if /* instruction has immediate operand */ {
+                // Release parameters from called procedure's stack
+                RSP = RSP + SRC;
+            }
+            tempESP = Pop();
+            tempSS = Pop(); // 64-bit pop; high-order 48 bits discarded; seg. desc. loaded
+        }
+    }
+
+    if ShadowStackEnabled(CPL) {
+        // check if 8 byte aligned
+        if SSP &amp;&amp; 0x7 != 0 {
+            #CP(FAR-RET/IRET);
+        }
+        if ReturnCodeSegmentSelector(RPL) != 3 {
+            tempSsCS = shadow_stack_load 8 bytes from SSP+16;
+            tempSsLIP = shadow_stack_load 8 bytes from SSP+8;
+            tempSSP = shadow_stack_load 8 bytes from SSP;
+            SSP = SSP + 24;
+            // do 64 bit compare to detect bits beyond 15 being set
+            tempCS = CS; // zero padded to 64 bit
+            if tempCS != tempSsCS {
+                #CP(FAR-RET/IRET);
+            }
+            // do 64 bit compare; pad CSBASE+RIP with 0 for 32 bit LIP
+            if CSBASE + RIP != tempSsLIP {
+                #CP(FAR-RET/IRET);
+            }
+            // check if 4 byte aligned
+            if tempSSP &amp;&amp; 0x3 != 0 {
+                #CP(FAR-RET/IRET);
+            }
+        }
+    }
+    tempOldCPL = CPL;
+    CPL = ReturnCodeSegmentSelector(RPL);
+    ESP = tempESP;
+    SS = tempSS;
+    tempOldSSP = SSP;
+    if ShadowStackEnabled(CPL) {
+        if CPL == 3 {
+            tempSSP = IA32_PL3_SSP;
+        }
+        if (CS.L == 0 &amp;&amp; tempSSP[32..=63] != 0)
+                || (CS.L == 1 &amp;&amp; /* tempSSP is not canonical relative to the current paging mode */) {
+            #GP(0);
+        }
+        SSP = tempSSP;
+    }
+    // Now past all faulting points; safe to free the token. The token free is done using the old SSP
+    // and using a supervisor override as old CPL was a supervisor privilege level
+    if ShadowStackEnabled(tempOldCPL) {
+        expected_token_value = tempOldSSP | BUSY_BIT; // busy bit - bit position 0 - must be set
+        new_token_value = tempOldSSP; // clear the busy bit
+        shadow_stack_lock_cmpxchg8b(tempOldSSP, new_token_value, expected_token_value);
+    }
+    for each of segment register (ES, FS, GS, and DS) {
+        if /* segment register points to data or non-conforming code segment */
+                &amp;&amp; CPL &gt; segment descriptor DPL {
+            // DPL in hidden part of segment register
+            SegmentSelector = 0; // SegmentSelector invalid
+        }
+    }
+    if /* instruction has immediate operand */ {
+        // release parameters from calling procedure's stack
+        if StackAddressSize == 32 {
+            ESP = ESP + SRC;
+        } else {
+            if StackAddressSize == 16 {
+                SP = SP + SRC;
+            } else { // StackAddressSize == 64
+                RSP = RSP + SRC;
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="flags-affected"><a class="header" href="#flags-affected">Flags Affected</a></h2>
+<p>None.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../instructions/control-transfer-instructions/call.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../instructions/miscellaneous-instructions/README.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../instructions/control-transfer-instructions/call.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../instructions/miscellaneous-instructions/README.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
